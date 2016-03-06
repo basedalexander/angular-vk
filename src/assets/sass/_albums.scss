@@ -1,0 +1,92 @@
+.albums,
+.photos {
+    margin-top: 0;
+    padding: 50px;
+    background: #fff;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.3);
+}
+
+
+.album {
+    cursor: pointer;
+    height: 100%;
+}
+
+.album {
+    height: 185px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+    @media screen and (max-width: 768px) {
+      height: 350px;
+    }
+
+    @media screen and (max-width: 666px) {
+      height: 300px;
+    }
+
+    @media screen and (max-width: 606px) {
+      height: 200px;
+    }
+
+    @media screen and (max-width: 443px) {
+      height: 150px;
+    }
+
+    @media screen and (max-width: 370px) {
+      height: 120px;
+    }
+}
+
+.album-wrapper {
+    position: relative;
+    overflow: hidden;
+    height: 185px;
+
+    @media screen and (max-width: 768px) {
+      height: 350px;
+    }
+
+    @media screen and (max-width: 666px) {
+      height: 300px;
+    }
+
+    @media screen and (max-width: 606px) {
+      height: 200px;
+    }
+
+    @media screen and (max-width: 443px) {
+      height: 150px;
+    }
+
+    @media screen and (max-width: 370px) {
+      height: 120px;
+    }
+}
+
+
+.album-desc {
+    position: absolute;
+    padding: 2px 7px;
+    bottom: 0;
+    width: 100%;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.album-thumb {
+    vertical-align: top;
+    border: 0;
+    display: block;
+    width: 100%;
+}
+
+.album-title {
+    font-weight: bold;
+}
+
+.album-size {
+    background: url(../images/camera_white.png) 0 6px no-repeat;
+    padding-left: 17px;
+    font-weight: bold;
+}

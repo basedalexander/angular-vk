@@ -1,0 +1,46 @@
+.nav-wrap {
+    height:65px;
+}
+
+.navbar-clear button:hover.blue,
+.navbar-clear a:hover.blue {
+    color: #4f92a8;
+}
+
+ul.nav li a.btn {
+    text-align: left;
+}
+
+.navbar-clear {
+    background: rgb(255, 255, 255); /* Fall-back for browsers that don't support rgba */
+    background: rgba(255, 255, 255, 0);
+}
+
+.navbar-clear a,
+.navbar-clear button {
+    color: #f5ead9;
+    font-size: 11px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.navbar-clear button {
+    padding-top: 15px;
+    padding-bottom: 18px;
+}
+
+.navbar-clear .icon-bar {
+    background-color: #f5ead9;
+}
+
+.navbar-clear .nav>li>a:hover, .navbar-clear .nav>li>a:focus,
+.navbar-clear .nav>li>button:hover, .navbar-clear .nav>li>button:focus {
+    text-decoration: none;
+    background: rgba(0, 0, 0, 0.17);
+}
+
+
+
+.user-avatar {
+    margin: 0 10px;
+}

@@ -1,0 +1,9 @@
+<div class="login-wrap">
+  <div class='form-signin'>
+    <p class="large">Please Sign In</p>
+    <button id="login_button" class='vk_login-btn' ng-click="login.login()">log in</button>
+    <div class="alert alert-danger" ng-if="login.error" role="alert">
+      <p>{{login.error}}</p>
+    </div>
+  </div>
+</div>

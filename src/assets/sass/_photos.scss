@@ -1,0 +1,30 @@
+
+.photo-header {
+    margin-left: 10px;
+}
+
+.back-to-albums-btn span {
+    cursor: pointer;
+    padding-left: 15px;
+    color: #f5ead9;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.photo {
+    cursor: pointer;
+    // height: 100%;
+    vertical-align: middle;
+    height: 150px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.photo-img {
+  display: block;
+  border: 0;
+  width: 100%;
+  vertical-align: middle;
+  position: relative;
+  z-index: 5;
+}

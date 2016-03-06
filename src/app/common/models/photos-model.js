@@ -1,0 +1,22 @@
+'use strict';
+
+angular.module('app.common')
+  .factory('PhotosModel', function ($http, UserModel, $state) {
+    console.log('PhotosModel');
+
+
+    function getAll (albumId, callback) {
+      var params = {
+        album_id: albumId
+      }
+      VK.Api.call('photos.get', params, function (res) {
+        callback(res.response);
+      });
+    }
+
+
+    return {
+      getAll: getAll
+    };
+
+  });

@@ -1,0 +1,57 @@
+.albums-nav {
+  background: #fff;
+  border-bottom: solid 1px #597DA3;
+}
+
+.albums-list {
+  margin: 20px 0 0;
+  padding: 0;
+  color: #fff;
+  list-style-type: none;
+  position: relative;
+  bottom: 0;
+
+  & > .active,
+  & > .albums-home {
+    visibility: visible;
+  }
+
+  & > li {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 2px 5px 2px;
+    border-radius: 3px 3px 0 0;
+    visibility: hidden;
+
+    &:hover {
+      background: #E1E7ED;
+    }
+
+  }
+
+
+  a {
+    display: block;
+    width: 100%;
+    color: #2B587A;
+    &:hover {
+      text-decoration: none;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+
+  li.active {
+    background: #54769A;
+    color: #fff;
+
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+
+
+
+}

@@ -1,0 +1,11 @@
+<div class="container photos">
+    <div class="row">
+        <div
+            class="col-xs-6 col-sm-4 col-md-3 photo"
+            ng-repeat="photo in ctrl.photos"
+            ng-click='ctrl.showPhoto(photo.id)'>
+              <img class='photo-img' ng-src='{{photo.src_big}}'>
+        </div>
+    </div>
+</div>
+
