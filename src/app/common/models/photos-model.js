@@ -2,8 +2,6 @@
 
 angular.module('app.common')
   .factory('PhotosModel', function ($http, UserModel, $state) {
-    console.log('PhotosModel');
-
 
     function getAll (albumId, callback) {
       var params = {
@@ -13,7 +11,6 @@ angular.module('app.common')
         callback(res.response);
       });
     }
-
 
     return {
       getAll: getAll

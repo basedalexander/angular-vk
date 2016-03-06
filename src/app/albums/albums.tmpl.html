@@ -1,0 +1,10 @@
+<div ng-if='currentUser' class="container albums-nav">
+    <ul class='albums-list' >
+      <li ui-sref-active='active' class='albums-home'><a ui-sref='albums.all'>All Photos</a></li>
+      <li ui-sref-active='active'><a ui-sref="albums.photos">{{currentAlbum}}</a></li>
+    </ul>
+</div>
+
+<div class="albums-container container">
+    <div ui-view class="row"></div>
+</div>

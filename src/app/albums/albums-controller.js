@@ -1,25 +1,19 @@
 'use strict';
 
 angular.module('app')
-  .controller('AlbumsCtrl', function ($state, AlbumsModel, $scope) {
-    console.log('AlbumsCtrl');
+  .controller('AlbumsCtrl', function ($state, $scope) {
     var ctrl = this;
 
-    $scope.albums = null;
+    $scope.currentAlbum = null;
 
-    ctrl.getAlbums = function () {
-      AlbumsModel.getAll(function (albums) {
-        $scope.albums = albums;
-        $scope.$apply();
-      });
-    };
+    ctrl.goAllPhotos = function () {
+      $scope.currentAlbum = null;
+      $state.go('albums');
+    }
 
-    ctrl.getAlbums();
-
-    ctrl.showPhotos = function (albumId, album) {
-      $state.go('photos', {
-        albumId: albumId
-      });
-    };
+    $scope.$on('albumEntered', function (event, title) {
+      $scope.currentAlbum = title;
+      $scope.$apply()
+    });
   });
 

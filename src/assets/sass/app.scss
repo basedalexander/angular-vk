@@ -3,6 +3,7 @@
 
 // Core settings
 @import "base";
+@import "bootstrap";
 
 @import "navbar";
 @import "albums-nav";
@@ -10,4 +11,5 @@
 @import "albums";
 @import "photos";
 @import "misc";
-@import "angular-tooltips";
+@import "ui-bootstrap-tooltips";
+@import "modal";

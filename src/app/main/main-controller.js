@@ -7,7 +7,6 @@ angular.module('app')
 
     $scope.currentUser = null;
     $scope.currentUserAvatar = null;
-    $scope.currentAlbum = null;
 
     main.currentColor = 'blue';
 
@@ -15,11 +14,6 @@ angular.module('app')
     main.logout = function () {
       Auth.logout();
     };
-
-    main.goAllPhotos = function () {
-      $scope.currentAlbum = null;
-      $state.go('albums');
-    }
 
 
     $scope.$on('userLoggedIn', function (event, user) {
@@ -41,10 +35,5 @@ angular.module('app')
 
     $scope.$on('auth_required', function () {
       $state.go('login');
-    });
-
-    $scope.$on('albumEntered', function (event, title) {
-      console.log('got title: ', title);
-      $scope.currentAlbum = title;
     });
   });

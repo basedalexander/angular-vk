@@ -13,9 +13,7 @@ var scss = {
   }
 };
 
-/**
- * Run test once and exit
- */
+
 gulp.task('test', function (done) {
   karma.start({
     configFile: __dirname + '/karma.conf.js',
@@ -24,9 +22,7 @@ gulp.task('test', function (done) {
 });
 
 
-/**
- * Watch for file changes and re-run tests on each change
- */
+x
 gulp.task('tdd', function (done) {
   karma.start({
     configFile: __dirname + '/karma.conf.js'

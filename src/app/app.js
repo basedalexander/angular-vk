@@ -3,7 +3,8 @@
 angular.module('app', [
   'ui.router',
   'app.common',
-  '720kb.tooltips'
+  'ngAnimate',
+  'ui.bootstrap'
 ])
   .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
 
@@ -16,9 +17,12 @@ angular.module('app', [
       })
       .state('albums', {
         url:'/albums',
-        templateUrl: 'app/albums/albums-mdv.tmpl.html',
+        templateUrl: 'app/albums/albums.tmpl.html',
         controller: 'AlbumsCtrl',
         controllerAs: 'ctrl',
+        params: {
+          autoActivateChild: 'albums.all'
+          },
         resolve: {
           'currentUser': ['Auth', function (Auth) {
             console.log('resolving /albums');
@@ -26,18 +30,30 @@ angular.module('app', [
           }]
         }
       })
-      .state('photos', {
-        url:'/albums/:albumId/photos',
-        templateUrl: 'app/photos/photos-mdv.tmpl.html',
-        controller: 'PhotosCtrl',
-        controllerAs: 'ctrl',
-        resolve: {
-          'currentUser': ['Auth', function (Auth) {
-            console.log('resolving /photos');
-            return Auth.requireAuth();
-          }]
-        }
-      })
+          .state('albums.all', {
+            url: '/all',
+            templateUrl: 'app/albums/albums-all.tmpl.html',
+            controller: 'AlbumsAllCtrl',
+            controllerAs: 'ctrl'
+          })
+          .state('albums.photos', {
+            url:'/:albumId/photos',
+            templateUrl: 'app/photos/photos.tmpl.html',
+            controller: 'PhotosCtrl',
+            controllerAs: 'ctrl',
+            resolve: {
+              'currentUser': ['Auth', function (Auth) {
+                console.log('resolving /photos');
+                return Auth.requireAuth();
+              }]
+            }
+          })
+              .state('albums.photos.viewer', {
+                url: '/:photoID',
+                templateUrl: 'app/photos/viewer.tmpl.html',
+                controller: 'ViewerCtrl',
+                controllerAs: 'ctrl'
+              })
     ;
     $urlRouterProvider.otherwise('/');
   }])
@@ -51,11 +67,17 @@ angular.module('app', [
     });
     $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
       if (toParams.albumId) {
-        console.log('album entered event');
         AlbumsModel.getById(toParams.albumId, function (title) {
           $rootScope.$broadcast('albumEntered', title);
         })
       }
-    })
+    });
+    $rootScope.$on('$stateChangeSuccess', function(event, toState){
+        var aac;
+        if (aac = toState && toState.params && toState.params.autoActivateChild){
+            console.log('works!');
+            $state.go(aac);
+        }
+    });
   })
 ;
