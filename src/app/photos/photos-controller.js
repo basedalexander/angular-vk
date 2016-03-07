@@ -26,7 +26,7 @@ angular.module('app')
             $state.go('albums.photos.viewer', {
                 photoID: photoID
             });
-        }
+        };
 
 
         // Tooltip's settings

@@ -13,18 +13,53 @@
 
 .photo {
     cursor: pointer;
-    // height: 100%;
     vertical-align: middle;
     height: 150px;
     overflow: hidden;
-    margin-bottom: 15px;
+    margin-bottom: 26px;
 }
 
 .photo-img {
   display: block;
   border: 0;
-  width: 100%;
+  width: 110%;
   vertical-align: middle;
-  position: relative;
-  z-index: 5;
+
+  @media (max-width: 1200px) {
+    width: 140%;
+  }
+
+  @media (max-width: 768px) {
+    width: 106%;
+  }
+}
+
+
+.photo-img-wrapper {
+  height: 150px;
+  overflow: hidden;
+}
+
+
+.photo,
+.photo-img-wrapper {
+    @media screen and (max-width: 768px) {
+    height: 350px;
+  }
+
+  @media screen and (max-width: 666px) {
+    height: 300px;
+  }
+
+  @media screen and (max-width: 606px) {
+    height: 200px;
+  }
+
+  @media screen and (max-width: 443px) {
+    height: 150px;
+  }
+
+  @media screen and (max-width: 370px) {
+    height: 120px;
+  }
 }

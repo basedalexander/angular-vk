@@ -1,10 +1,12 @@
 <div
-  class="col-xs-6 col-sm-4 col-md-3 photo"
+  class="col-sm-4 col-md-3 photo"
   ng-repeat="(pos, photo) in photos"
   ng-click='ctrl.showPhoto(photo.pid, pos)'
   tooltip-placement="{{placement.selected}}"
   uib-tooltip="id: {{photo.pid}}">
-    <img class='photo-img' ng-src='{{photo.src_big}}'>
+      <div class="photo-img-wrapper">
+        <img class='photo-img' ng-src='{{photo.src_big}}'>
+      </div>
 </div>
 
 

@@ -6959,6 +6959,13 @@ button.close {
   margin: 0 10px;
 }
 
+@media (max-width: 450px) {
+  .img-circle {
+    width: 35px;
+    height: 35px;
+  }
+}
+
 .nav-logo {
   float: left;
   height: 50px;
@@ -7000,6 +7007,12 @@ button.close {
   display: block;
   padding: 15px;
   cursor: default;
+}
+
+@media (max-width: 450px) {
+  .nav-username {
+    display: none;
+  }
 }
 
 .navbar a,
@@ -7205,7 +7218,13 @@ button.close {
   vertical-align: top;
   border: 0;
   display: block;
-  width: 100%;
+  width: 113%;
+}
+
+@media (min-width: 1200px) {
+  .album-thumb {
+    width: 121%;
+  }
 }
 
 .album-title {
@@ -7235,16 +7254,66 @@ button.close {
   vertical-align: middle;
   height: 150px;
   overflow: hidden;
-  margin-bottom: 15px;
+  margin-bottom: 26px;
 }
 
 .photo-img {
   display: block;
   border: 0;
-  width: 100%;
+  width: 110%;
   vertical-align: middle;
-  position: relative;
-  z-index: 5;
+}
+
+@media (max-width: 1200px) {
+  .photo-img {
+    width: 140%;
+  }
+}
+
+@media (max-width: 768px) {
+  .photo-img {
+    width: 106%;
+  }
+}
+
+.photo-img-wrapper {
+  height: 150px;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 768px) {
+  .photo,
+  .photo-img-wrapper {
+    height: 350px;
+  }
+}
+
+@media screen and (max-width: 666px) {
+  .photo,
+  .photo-img-wrapper {
+    height: 300px;
+  }
+}
+
+@media screen and (max-width: 606px) {
+  .photo,
+  .photo-img-wrapper {
+    height: 200px;
+  }
+}
+
+@media screen and (max-width: 443px) {
+  .photo,
+  .photo-img-wrapper {
+    height: 150px;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .photo,
+  .photo-img-wrapper {
+    height: 120px;
+  }
 }
 
 a.view {

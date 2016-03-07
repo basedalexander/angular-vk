@@ -2,47 +2,6 @@
     height:65px;
 }
 
-// .navbar-nav a {
-//     cursor: pointer;
-// }
-
-// .navbar-nav a:hover {
-//     color: #4f92a8;
-// }
-
-// ul.nav li a.btn {
-//     text-align: left;
-// }
-
-// .navbar-nav {
-//     background: rgb(255, 255, 255); /* Fall-back for browsers that don't support rgba */
-//     background: rgba(255, 255, 255, 0);
-// }
-
-// .navbar-nav a,
-// .navbar-nav button {
-//     color: #f5ead9;
-//     font-size: 11px;
-//     font-weight: bold;
-//     text-decoration: none;
-// }
-
-// .navbar-nav button {
-//     padding-top: 15px;
-//     padding-bottom: 18px;
-// }
-
-// .navbar-nav .icon-bar {
-//     background-color: #f5ead9;
-// }
-
-// .navbar-nav .nav>li>a:hover, .navbar-nav .nav>li>a:focus,
-// .navbar-nav .nav>li>button:hover, .navbar-nav .nav>li>button:focus {
-//     text-decoration: none;
-//     background: rgba(0, 0, 0, 0.17);
-// }
-
-
 
 .navbar {
     border-radius: 0;
@@ -51,6 +10,13 @@
 
 .user-avatar {
     margin: 0 10px;
+}
+
+.img-circle {
+  @media (max-width: 450px){
+    width: 35px;
+    height: 35px;
+  }
 }
 
 
@@ -94,6 +60,10 @@
     display: block;
     padding: 15px;
     cursor: default;
+
+  @media (max-width: 450px) {
+    display: none;
+  }
 }
 
 .navbar a,
