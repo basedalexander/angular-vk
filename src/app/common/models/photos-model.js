@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app.common')
-  .factory('PhotosModel', function ($http, UserModel, $state) {
+  .factory('PhotosModel', function () {
 
     function getAll (albumId, callback) {
       var params = {

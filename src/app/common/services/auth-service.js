@@ -4,6 +4,9 @@ angular.module('app.common')
   .factory('Auth', ['UserModel', '$rootScope', '$q', function (UserModel, $rootScope, $q) {
 
     var requireAuth = false;
+
+    // Imidiately checks whether user logged or not,
+    // if yes, then fetch user details and send them to the scopes
     VK.Auth.getLoginStatus(function (res) {
       if (res.status === 'connected') {
         console.log('Session info: ', res);
@@ -41,6 +44,7 @@ angular.module('app.common')
       requireAuth = true;
     }
 
+
     function needAuth() {
       return $q(function (resolve, reject) {
         if (requireAuth) {
@@ -51,20 +55,9 @@ angular.module('app.common')
       });
     }
 
-    function loggedIn () {
-      return $q(function () {
-        if (requireAuth) {
-          resolve('ok');
-        } else {
-          reject();
-        }
-      });
-    }
-
     return {
       login: login,
       logout: logout,
-      requireAuth: needAuth,
-      loggedIn : loggedIn
+      requireAuth: needAuth
     };
   }]);

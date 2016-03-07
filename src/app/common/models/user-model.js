@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app.common')
-  .factory('UserModel', function ($http) {
+  .factory('UserModel', function () {
 
     var currentUser = null;
 
@@ -23,7 +23,6 @@ angular.module('app.common')
         params = {
           fields: 'photo_50'
         };
-
 
       VK.Api.call(method, params, function (res) {
         currentUser = res.response[0];

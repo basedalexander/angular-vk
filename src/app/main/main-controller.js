@@ -1,20 +1,16 @@
 'use strict';
 
 angular.module('app')
-  .controller('MainCtrl', function (UserModel, $state, $scope, Auth) {
+  .controller('MainCtrl', [ '$state', '$scope', 'Auth', function ($state, $scope, Auth) {
 
     var main = this;
 
     $scope.currentUser = null;
-    $scope.currentUserAvatar = null;
-
-    main.currentColor = 'blue';
 
 
     main.logout = function () {
       Auth.logout();
     };
-
 
     $scope.$on('userLoggedIn', function (event, user) {
         event.preventDefault();
@@ -22,18 +18,21 @@ angular.module('app')
         $state.go('albums');
     });
 
+    // Checks whether user is already logged on initialization stage
     $scope.$on('userLogged', function (event, user) {
         event.preventDefault();
         $scope.currentUser = user;
     });
 
+    // Log out button clicked
     $scope.$on('userLoggedOut', function (event) {
       event.preventDefault();
       $scope.currentUser = null;
       $state.go('login');
     });
 
+    // Init stage: if user isn't already logged in - redirect him to login state
     $scope.$on('auth_required', function () {
       $state.go('login');
     });
-  });
+  }]);

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .controller('PhotosCtrl', [ '$stateParams', 'PhotosModel', '$scope', '$state', '$rootScope',  function($stateParams, PhotosModel, $scope, $state, $rootScope) {
+    .controller('PhotosCtrl', [ '$stateParams', 'PhotosModel', '$scope', '$state',  function($stateParams, PhotosModel, $scope, $state) {
         var ctrl = this;
         $scope.currentPhotoPos = null;
 
@@ -9,7 +9,6 @@ angular.module('app')
 
         // Save album id for cases when user quits from the viewer
         $scope.lastChoosenAlbumId = $stateParams.albumId;
-
 
 
         ctrl.getPhotos = function() {
@@ -24,7 +23,6 @@ angular.module('app')
         ctrl.showPhoto = function (photoID, pos) {
             // save position of chosen photo
             $scope.currentPhotoPos = pos;
-
             $state.go('albums.photos.viewer', {
                 photoID: photoID
             });
