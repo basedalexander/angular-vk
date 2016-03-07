@@ -9,6 +9,7 @@ angular.module('app.common')
       }
       VK.Api.call('photos.get', params, function (res) {
         callback(res.response);
+        console.log('Photos.get: ', res.response);
       });
     }
 

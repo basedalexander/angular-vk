@@ -2,8 +2,6 @@
 
 angular.module('app')
   .controller('AlbumsAllCtrl', [ '$state', 'AlbumsModel', '$scope', function ($state, AlbumsModel, $scope) {
-    console.log('AlbumsAllCtrl');
-
     var ctrl = this;
 
     $scope.albums = null;

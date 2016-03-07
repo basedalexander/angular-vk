@@ -463,14 +463,6 @@ body {
   border: none;
 }
 
-@media (max-width: 767px) {
-  .collapsing, .collapse.in {
-    z-index: 2;
-    position: relative;
-    border: 10px solid #f5ead9;
-  }
-}
-
 /*!
  * Bootstrap v3.3.1 (http://getbootstrap.com)
  * Copyright 2011-2014 Twitter, Inc.
@@ -6958,46 +6950,64 @@ button.close {
   height: 65px;
 }
 
-.navbar-clear button:hover.blue,
-.navbar-clear a:hover.blue {
-  color: #4f92a8;
-}
-
-ul.nav li a.btn {
-  text-align: left;
-}
-
-.navbar-clear {
-  background: white;
-  /* Fall-back for browsers that don't support rgba */
-  background: rgba(255, 255, 255, 0);
-}
-
-.navbar-clear a,
-.navbar-clear button {
-  color: #f5ead9;
-  font-size: 11px;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.navbar-clear button {
-  padding-top: 15px;
-  padding-bottom: 18px;
-}
-
-.navbar-clear .icon-bar {
-  background-color: #f5ead9;
-}
-
-.navbar-clear .nav > li > a:hover, .navbar-clear .nav > li > a:focus,
-.navbar-clear .nav > li > button:hover, .navbar-clear .nav > li > button:focus {
-  text-decoration: none;
-  background: rgba(0, 0, 0, 0.17);
+.navbar {
+  border-radius: 0;
+  margin-bottom: 13px;
 }
 
 .user-avatar {
   margin: 0 10px;
+}
+
+.nav-logo {
+  float: left;
+  height: 50px;
+}
+
+.nav-logo > .brand {
+  font-size: 25px;
+  color: #f5ead9;
+  text-decoration: none;
+  font-weight: bold;
+  line-height: 50px;
+}
+
+.nav-right {
+  float: right;
+}
+
+.nav-right-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-right-list li {
+  display: inline-block;
+}
+
+.nav-right-list a {
+  display: block;
+  cursor: pointer;
+  padding: 15px;
+}
+
+.nav-right-list a:hover {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.nav-username {
+  display: block;
+  padding: 15px;
+  cursor: default;
+}
+
+.navbar a,
+.navbar li {
+  color: #f5ead9;
+  font-size: 11px;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 .albums-nav {
@@ -7056,7 +7066,7 @@ ul.nav li a.btn {
 }
 
 .login-wrap {
-  display: table-cell;
+  display: block;
   text-align: center;
   vertical-align: middle;
 }
@@ -7066,30 +7076,22 @@ ul.nav li a.btn {
   width: 100%;
   max-width: 360px;
   min-height: 220px;
-  margin: 0 auto;
+  margin: 74px auto 0;
   position: relative;
   padding: 20px;
-  padding-top: 34px;
+  padding-top: 28px;
   background: #f5ead9;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.3);
 }
 
-.form-signin button {
-  background: none;
-  border: none;
-  box-shadow: none;
-}
-
-.form-signin button:hover {
-  background: none;
-  border: none;
-  box-shadow: none;
-}
-
-.form-signin .large {
+.login-title {
   color: #333;
   font-size: 24px;
-  font-weight: bold;
+  margin-bottom: 19px;
+}
+
+.vk_login-btn {
+  cursor: pointer;
 }
 
 .form-signin input[type=text],
@@ -7368,7 +7370,7 @@ a.view:hover, a.view:focus {
 }
 
 .modal-dialog {
-  margin: 119px auto 30px;
+  margin: 23px auto 30px;
 }
 
 .modal-content {
@@ -7414,6 +7416,7 @@ a.view:hover, a.view:focus {
   float: left;
   padding-left: 15px;
   font-size: 12px;
+  height: 20px;
 }
 
 /*# sourceMappingURL=app.css.map */

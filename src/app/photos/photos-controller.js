@@ -1,24 +1,30 @@
 'use strict';
 
 angular.module('app')
-    .controller('PhotosCtrl', [ '$stateParams', 'PhotosModel', '$scope', '$state', '$rootScope', function($stateParams, PhotosModel, $scope, $state, $rootScope) {
+    .controller('PhotosCtrl', [ '$stateParams', 'PhotosModel', '$scope', '$state', '$rootScope',  function($stateParams, PhotosModel, $scope, $state, $rootScope) {
         var ctrl = this;
+        $scope.currentPhotoPos = null;
 
         ctrl.albumId = $stateParams.albumId;
-        $rootScope.lastChoosenAlbumId = $stateParams.albumId;
+
+        // Save album id for cases when user quits from the viewer
+        $scope.lastChoosenAlbumId = $stateParams.albumId;
+
 
 
         ctrl.getPhotos = function() {
             PhotosModel.getAll(ctrl.albumId, function (photos) {
-                ctrl.photos = photos;
+                $scope.photos = photos;
                 $scope.$apply();
             });
         };
-
         ctrl.getPhotos();
 
-        ctrl.showPhoto = function (photoID) {
-            console.log('showPhoto: ', photoID);
+
+        ctrl.showPhoto = function (photoID, pos) {
+            // save position of chosen photo
+            $scope.currentPhotoPos = pos;
+
             $state.go('albums.photos.viewer', {
                 photoID: photoID
             });

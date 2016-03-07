@@ -55,7 +55,7 @@ angular.module('app', [
                 controllerAs: 'ctrl'
               })
     ;
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/albums/all');
   }])
   .run(function ($rootScope, $state, Auth, AlbumsModel) {
     $rootScope.$on('$stateChangeError', function (event, message) {

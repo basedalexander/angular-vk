@@ -2,45 +2,106 @@
     height:65px;
 }
 
-.navbar-clear button:hover.blue,
-.navbar-clear a:hover.blue {
-    color: #4f92a8;
+// .navbar-nav a {
+//     cursor: pointer;
+// }
+
+// .navbar-nav a:hover {
+//     color: #4f92a8;
+// }
+
+// ul.nav li a.btn {
+//     text-align: left;
+// }
+
+// .navbar-nav {
+//     background: rgb(255, 255, 255); /* Fall-back for browsers that don't support rgba */
+//     background: rgba(255, 255, 255, 0);
+// }
+
+// .navbar-nav a,
+// .navbar-nav button {
+//     color: #f5ead9;
+//     font-size: 11px;
+//     font-weight: bold;
+//     text-decoration: none;
+// }
+
+// .navbar-nav button {
+//     padding-top: 15px;
+//     padding-bottom: 18px;
+// }
+
+// .navbar-nav .icon-bar {
+//     background-color: #f5ead9;
+// }
+
+// .navbar-nav .nav>li>a:hover, .navbar-nav .nav>li>a:focus,
+// .navbar-nav .nav>li>button:hover, .navbar-nav .nav>li>button:focus {
+//     text-decoration: none;
+//     background: rgba(0, 0, 0, 0.17);
+// }
+
+
+
+.navbar {
+    border-radius: 0;
+    margin-bottom: 13px;
 }
 
-ul.nav li a.btn {
-    text-align: left;
+.user-avatar {
+    margin: 0 10px;
 }
 
-.navbar-clear {
-    background: rgb(255, 255, 255); /* Fall-back for browsers that don't support rgba */
-    background: rgba(255, 255, 255, 0);
+
+.nav-logo {
+    float: left;
+    height: 50px;
 }
 
-.navbar-clear a,
-.navbar-clear button {
+.nav-logo > .brand {
+    font-size: 25px;
+    color: #f5ead9;
+    text-decoration: none;
+    font-weight: bold;
+    line-height: 50px;
+}
+
+.nav-right {
+    float: right;
+}
+
+.nav-right-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+        display: inline-block;
+    }
+
+    a {
+        display: block;
+        cursor: pointer;
+        padding: 15px;
+        &:hover {
+            background: rgba(0, 0, 0, 0.15);
+        }
+    }
+}
+
+.nav-username {
+    display: block;
+    padding: 15px;
+    cursor: default;
+}
+
+.navbar a,
+.navbar li {
     color: #f5ead9;
     font-size: 11px;
     font-weight: bold;
     text-decoration: none;
 }
 
-.navbar-clear button {
-    padding-top: 15px;
-    padding-bottom: 18px;
-}
 
-.navbar-clear .icon-bar {
-    background-color: #f5ead9;
-}
-
-.navbar-clear .nav>li>a:hover, .navbar-clear .nav>li>a:focus,
-.navbar-clear .nav>li>button:hover, .navbar-clear .nav>li>button:focus {
-    text-decoration: none;
-    background: rgba(0, 0, 0, 0.17);
-}
-
-
-
-.user-avatar {
-    margin: 0 10px;
-}
