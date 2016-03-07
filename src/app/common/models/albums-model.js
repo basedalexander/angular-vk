@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app.common')
-  .factory('AlbumsModel', [ '$http', 'UserModel', function ($http, UserModel) {
+  .factory('AlbumsModel', function () {
     function getAll (callback) {
       var params = {
         need_covers: 1,
@@ -27,4 +27,4 @@ angular.module('app.common')
       getAll: getAll,
       getById: getById
     }
-  }]);
+  });

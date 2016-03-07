@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-  .controller('AlbumsCtrl', function ($state, $scope) {
+  .controller('AlbumsCtrl', [ '$state', '$scope', function ($state, $scope) {
     var ctrl = this;
 
     $scope.currentAlbum = null;
@@ -15,5 +15,5 @@ angular.module('app')
       $scope.currentAlbum = title;
       $scope.$apply()
     });
-  });
+  }]);
 

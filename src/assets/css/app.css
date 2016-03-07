@@ -7032,7 +7032,7 @@ button.close {
 .albums-list > li {
   display: inline-block;
   margin-right: 10px;
-  padding: 2px 5px 2px;
+  padding: 5px 10px 3px;
   border-radius: 3px 3px 0 0;
   visibility: hidden;
 }
@@ -7045,6 +7045,7 @@ button.close {
   display: block;
   width: 100%;
   color: #2B587A;
+  font-size: 11px;
 }
 
 .albums-list a:hover {
@@ -7197,6 +7198,7 @@ button.close {
   width: 100%;
   color: #fff;
   background-color: rgba(0, 0, 0, 0.4);
+  font-size: 13px;
 }
 
 .album-thumb {
@@ -7211,7 +7213,7 @@ button.close {
 }
 
 .album-size {
-  background: url(../images/camera_white.png) 0 6px no-repeat;
+  background: url(../images/camera_white.png) 0 4px no-repeat;
   padding-left: 17px;
   font-weight: bold;
 }
@@ -7362,7 +7364,7 @@ a.view:hover, a.view:focus {
 }
 
 .modal {
-  background: rgba(0, 0, 0, 0.6);
+  background: none;
 }
 
 .modal-body {
