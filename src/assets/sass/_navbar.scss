@@ -38,6 +38,7 @@
 }
 
 .nav-right-list {
+    visibility: hidden;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -54,6 +55,10 @@
             background: rgba(0, 0, 0, 0.15);
         }
     }
+}
+
+.nav-right-list.active {
+  visibility: visible;
 }
 
 .nav-username {

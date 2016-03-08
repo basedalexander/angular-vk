@@ -87,9 +87,11 @@
 
 .album-title {
     font-weight: bold;
+    float: left;
 }
 
 .album-size {
+    float: right;
     background: url(../images/camera_white.png) 0 4px no-repeat;
     padding-left: 17px;
     font-weight: bold;

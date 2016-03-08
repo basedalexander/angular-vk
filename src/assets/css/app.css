@@ -431,38 +431,6 @@ body {
   transition: background-color 0.5s ease;
 }
 
-.content {
-  display: table;
-  width: 100%;
-  height: calc(100% - 65px);
-}
-
-.content .album {
-  min-height: 200px;
-  max-width: 290px;
-  width: 100%;
-  margin: 20px auto;
-  padding: 20px;
-  background: #f5ead9;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.3);
-  position: relative;
-}
-
-.content .photo {
-  min-height: 200px;
-  max-width: 290px;
-  width: 100%;
-  margin: 20px auto;
-  padding: 20px;
-  background: #f5ead9;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.3);
-  position: relative;
-}
-
-.content .album fieldset, .content .photo fieldset {
-  border: none;
-}
-
 /*!
  * Bootstrap v3.3.1 (http://getbootstrap.com)
  * Copyright 2011-2014 Twitter, Inc.
@@ -6984,6 +6952,7 @@ button.close {
 }
 
 .nav-right-list {
+  visibility: hidden;
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -7001,6 +6970,10 @@ button.close {
 
 .nav-right-list a:hover {
   background: rgba(0, 0, 0, 0.15);
+}
+
+.nav-right-list.active {
+  visibility: visible;
 }
 
 .nav-username {
@@ -7229,9 +7202,11 @@ button.close {
 
 .album-title {
   font-weight: bold;
+  float: left;
 }
 
 .album-size {
+  float: right;
   background: url(../images/camera_white.png) 0 4px no-repeat;
   padding-left: 17px;
   font-weight: bold;
@@ -7316,78 +7291,6 @@ button.close {
   }
 }
 
-a.view {
-  color: #333;
-}
-
-a.view:hover, a.view:focus {
-  color: #333;
-}
-
-.x-small {
-  color: #333333;
-  font-size: 11px;
-}
-
-.medium {
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.bottom-right-corner {
-  position: absolute;
-  bottom: -85px;
-  right: -10px;
-}
-
-.bottom-right-corner-photo {
-  position: absolute;
-  bottom: -70px;
-  right: -10px;
-}
-
-.arrow-bottom-right {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-}
-
-.active {
-  background: #FFF;
-}
-
-.faded {
-  opacity: 0.3;
-}
-
-/* HELPER CLASSES */
-.fl_l {
-  float: left;
-}
-
-.fl_r {
-  float: right;
-}
-
-/* Start by setting display:none to make this hidden.
-   Then we position it in relation to the viewport window
-   with position:fixed. Width, height, top and left speak
-   speak for themselves. Background we set to 80% white with
-   our animation centered, and no-repeating */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background: rgba(245, 234, 217, 0.6);
-  url: "/assets/img/loader.gif" 50% 50% no-repeat;
-}
-
-/* When the body has the loading class, we turn
-   the scrollbar off with overflow:hidden */
 /* Include this file in your html if you are using the CSP mode. */
 [uib-tooltip-popup].tooltip.top-left > .tooltip-arrow,
 [uib-tooltip-popup].tooltip.top-right > .tooltip-arrow,

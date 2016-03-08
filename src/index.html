@@ -21,7 +21,7 @@
           </div>
 
           <nav class="nav-right">
-            <ul ng-show="currentUser" class='nav-right-list'>
+            <ul ng-show="currentUser" class='nav-right-list {{currentUser && "active"}}'>
               <li>
                 <span class='nav-username'>{{currentUser.first_name}}</span>
               </li>
