@@ -7382,6 +7382,7 @@ button.close {
 .modal-img {
   border: 0;
   margin: 0 auto;
+  background: url(../images/progress_gray.gif) no-repeat 50% 50%;
 }
 
 .modal-img-link {
