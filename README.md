@@ -1,4 +1,4 @@
-# angular-vk-photos
+# angular-vk-albums
 
 
 ## Getting Started

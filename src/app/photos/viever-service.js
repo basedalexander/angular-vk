@@ -2,8 +2,6 @@
 
 angular.module('app')
   .factory('ViewerService', ['$uibModal', '$state', '$log', function ($uibModal, $state, $log) {
-    console.log('ViewerService loaded');
-
     var isOpened = false;
     var modalInstance;
 

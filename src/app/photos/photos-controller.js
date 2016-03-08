@@ -1,10 +1,9 @@
 'use strict';
 
 angular.module('app')
-    .controller('PhotosCtrl', [ '$stateParams', 'PhotosModel', '$scope', '$state',  function($stateParams, PhotosModel, $scope, $state) {
+    .controller('PhotosCtrl', [ '$stateParams', 'PhotosModel', '$scope', '$state', 'ViewerService', function($stateParams, PhotosModel, $scope, $state, ViewerService) {
         var ctrl = this;
         $scope.currentPhotoPos = null;
-
         ctrl.albumId = $stateParams.albumId;
 
         // Save album id for cases when user quits from the viewer
@@ -28,6 +27,34 @@ angular.module('app')
             });
         };
 
+        $scope.increaseCurrentPhotoPos = function () {
+          var curr = $scope.currentPhotoPos;
+          var len = $scope.photos.length;
+
+          if (curr < len - 1) {
+            curr++;
+          } else {
+            curr = 0;
+          }
+          $scope.currentPhotoPos = curr;
+          return curr;
+        };
+
+        $scope.decreaseCurrentPhotoPos = function () {
+          var curr = $scope.currentPhotoPos;
+          var len = $scope.photos.length;
+
+          if (curr > 0) {
+            curr--;
+          } else {
+            curr = len - 1;
+          }
+
+          $scope.currentPhotoPos = curr;
+          return curr;
+        };
+
+
 
         // Tooltip's settings
         $scope.placement = {
@@ -47,4 +74,29 @@ angular.module('app')
           ],
           selected: 'top'
         };
+
+
+    $scope.$on('$stateChangeStart',
+      function(event, toState, toParams, fromState, fromParams){
+
+        if (fromState.url === toState.url) {
+          ViewerService.close();
+
+          if ($scope.photos[$scope.currentPhotoPos].pid != toParams.photoID) {
+            console.log('BACK HISTORY PRESSED');
+            $scope.decreaseCurrentPhotoPos();
+          }
+        }
+
+        if (fromState.url === "/:photoID" && toState.url === "/:albumId/photos") {
+          ViewerService.close();
+        }
+
+        console.log('fromState: ', fromState.url);
+        console.log('from params:', fromParams);
+        console.log('toState : ', toState.url);
+        console.log('with params:', toParams);
+
+      });
+
     }]);

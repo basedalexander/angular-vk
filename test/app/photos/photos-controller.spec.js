@@ -20,11 +20,12 @@ describe('Controller: PhotosCtrl', function () {
     $stateParams = {albumId: 123};
     PhotosModel = {
       getAll: function () {
+
       }
     };
 
     spyOn($state, 'go');
-    spyOn(PhotosModel, 'getAll');
+    spyOn(PhotosModel, 'getAll');;
 
     controller = $controller('PhotosCtrl', {
       $stateParams: $stateParams,
@@ -49,6 +50,36 @@ describe('Controller: PhotosCtrl', function () {
 
   it('$scope.currentPhotoPos initially should be null', function () {
     expect($scope.currentPhotoPos).toBe(null);
+  });
+
+  it('$scope.increaseCurrentPhotoPos, should be defined', function () {
+    expect($scope.increaseCurrentPhotoPos).toBeDefined();
+  });
+
+  it('increaseCurrentPhotoPos should increase position properly', function () {
+    expect($scope.currentPhotoPos).toBe(null);
+    $scope.photos = [1,2,3,4,5];
+    $scope.currentPhotoPos = 0;
+    $scope.increaseCurrentPhotoPos();
+    expect($scope.currentPhotoPos).toBe(1);
+    $scope.currentPhotoPos = 4;
+    $scope.increaseCurrentPhotoPos();
+    expect($scope.currentPhotoPos).toBe(0);
+  });
+
+  it('$scope.decreaseCurrentPhotoPos, should be defined', function () {
+    expect($scope.decreaseCurrentPhotoPos).toBeDefined();
+  });
+
+  it('decreaseCurrentPhotoPos should increase position properly', function () {
+    expect($scope.currentPhotoPos).toBe(null);
+    $scope.photos = [1,2,3,4,5];
+    $scope.currentPhotoPos = 3;
+    $scope.decreaseCurrentPhotoPos();
+    expect($scope.currentPhotoPos).toBe(2);
+    $scope.currentPhotoPos = 0;
+    $scope.decreaseCurrentPhotoPos();
+    expect($scope.currentPhotoPos).toBe(4);
   });
 
   it('$scope.albumId  should be equal to given params', function () {

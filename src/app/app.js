@@ -79,21 +79,6 @@ angular.module('app', [
         }
     });
 
-    $rootScope.$on('$stateChangeStart',
-      function(event, toState, toParams, fromState, fromParams){
 
-        if (fromState.url === toState.url) {
-          ViewerService.close();
-        }
-
-        if (fromState.url === "/:photoID" && toState.url === "/:albumId/photos") {
-          ViewerService.close();
-        }
-
-        console.log('toState : ', toState.url);
-        console.log('fromState: ', fromState.url);
-        // transitionTo() promise will be rejected with
-        // a 'transition prevented' error
-      });
   })
 ;

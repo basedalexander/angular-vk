@@ -1,6 +1,5 @@
 angular.module('app')
 .controller('ViewerCtrl', [ '$scope','$stateParams', 'ViewerService', function ($scope, $stateParams, ViewerService) {
-
   // In case of hard reloading on this state
   if ($scope.$parent.currentPhotoPos === null) {
     console.log('Photo viewer hard reloading, fetching album photos...');
@@ -28,21 +27,12 @@ angular.module('app')
     console.log('modal ctrl');
 
      $scope.next = function () {
-       var currPos = $scope.$parent.currentPhotoPos;
-       var len = $scope.$parent.photos.length;
-       var photoID;
 
-       if (currPos < len - 1) {
-         currPos++;
-       } else {
-         currPos = 0;
-       }
-       photoID = $scope.$parent.photos[currPos].pid;
+       var curr = $scope.$parent.increaseCurrentPhotoPos();
+       photoID = $scope.$parent.photos[curr].pid;
        $state.go('albums.photos.viewer', {
            photoID: photoID
        });
-
-       $scope.$parent.currentPhotoPos = currPos;
 
      };
 
