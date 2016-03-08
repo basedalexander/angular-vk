@@ -1,3 +1,5 @@
+// Karma configuration
+// Generated on Mon Mar 07 2016 22:33:11 GMT+0300 (MSK)
 
 module.exports = function(config) {
   config.set({
@@ -13,14 +15,19 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'node_modules/angular/angular.js',
-      'node_modules/angular-animate/angular-animate.js',
-      'src/vendor/angular-ui-router.min.js',
-      'src/app/app.js',
-      'src/app/**/*.js',
-      'src/app/**/*.html',
-   		'node_modules/angular-mocks/angular-mocks.js',
-      'test/**/*.spec.js'
+        "node_modules/angular/angular.js",
+        "node_modules/angular-ui-router/release/angular-ui-router.min.js",
+        "node_modules/angular-animate/angular-animate.min.js",
+        'src/vendor/openapi.js',
+        'node_modules/angular-mocks/angular-mocks.js',
+        'src/vendor/ui-bootstrap-custom-tpls-1.2.4.min.js',
+        'src/app/common/**/*.js',
+        'src/app/app.js',
+        'src/app/albums/*.js',
+        'src/app/login/*.js',
+        'src/app/main/*.js',
+        'src/app/photos/*.js',
+        'test/**/*.spec.js'
     ],
 
 
@@ -32,17 +39,8 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      '**/*.html': ['ng-html2js']
     },
 
-    ngHtml2JsPreprocessor: {
-      // strip this from the file path
-      stripPrefix: 'src/',
-
-      // setting this option will create only a single module that contains templates
-      // from all the files, so you can load them all with module('foo')
-      moduleName: 'appTmpl'
-    },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
@@ -71,9 +69,21 @@ module.exports = function(config) {
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: ['PhantomJS'],
 
+    // Which plugins to enable
+    plugins: [
+      'karma-phantomjs-launcher',
+      'karma-jasmine'
+    ],
+
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false
-  });
-};
+    singleRun: false,
+
+    colors: true,
+
+    // Concurrency level
+    // how many browser should be started simultaneous
+    concurrency: Infinity
+  })
+}

@@ -7,10 +7,12 @@ angular.module('app')
 
     $scope.currentUser = null;
 
-
     main.logout = function () {
       Auth.logout();
     };
+
+
+
 
     $scope.$on('userLoggedIn', function (event, user) {
         event.preventDefault();

@@ -4,7 +4,7 @@
   "description": "AngularJS app built using vk api",
   "main": "index.js",
   "scripts": {
-    "test": "node ./node_modules/gulp/bin/gulp.js test"
+    "test": "karma start karma.conf.js"
   },
   "repository": {
     "type": "git",
@@ -12,19 +12,21 @@
   },
   "author": {
     "name": "Alex Kozlov",
-    "email": "itrefa@gmail.com",
+    "email": "itrefa@gmail.com"
   },
-  "dependencies": {
-    "angular": "1.3.14",
-    "angular-animate": "1.3.14"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "angular-mocks": "1.3.14",
-    "gulp": "3.8.11",
-    "karma": "0.12.31",
-    "karma-chrome-launcher": "0.1.3",
-    "karma-jasmine": "0.2.2",
-    "karma-ng-html2js-preprocessor": "^0.1.2",
-    "karma-phantomjs-launcher": "0.1.4"
+    "angular": "^1.5.0",
+    "angular-animate": "^1.5.0",
+    "angular-mocks": "^1.5.0",
+    "angular-ui-router": "^0.2.18",
+    "gulp": "^3.9.1",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.21",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-jasmine": "^0.3.7",
+    "karma-ng-html2js-preprocessor": "^0.2.1",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "phantomjs-prebuilt": "^2.1.5"
   }
 }
