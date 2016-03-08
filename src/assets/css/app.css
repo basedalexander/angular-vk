@@ -7345,6 +7345,18 @@ button.close {
   min-height: 400px;
 }
 
+@media (max-width: 992px) {
+  .modal-body {
+    min-height: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal-body {
+    min-height: 250px;
+  }
+}
+
 .modal-dialog {
   margin: 23px auto 30px;
 }
