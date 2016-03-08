@@ -7098,6 +7098,7 @@ button.close {
   padding: 50px;
   background: #fff;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.3);
+  min-height: 530px;
 }
 
 .album {
@@ -7341,6 +7342,7 @@ button.close {
 
 .modal-body {
   padding: 0 25px;
+  min-height: 400px;
 }
 
 .modal-dialog {

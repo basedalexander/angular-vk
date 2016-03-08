@@ -2,12 +2,13 @@
 
 angular.module('app')
   .factory('ViewerService', ['$uibModal', '$state', '$log', function ($uibModal, $state, $log) {
-
+    console.log('ViewerService loaded');
 
     var isOpened = false;
+    var modalInstance;
 
     function open (scope) {
-      var modalInstance = $uibModal.open({
+      modalInstance = $uibModal.open({
         animation: false,
         templateUrl: 'myModalContent.html',
         controller: 'ModalInstanceCtrl',
@@ -18,6 +19,7 @@ angular.module('app')
       isOpened = true;
 
       modalInstance.result.then(function (selectedItem) {}, function () {
+        isOpened = false;
         $state.go('albums.photos', {
           albumId: scope.lastChoosenAlbumId
         });
@@ -25,7 +27,13 @@ angular.module('app')
       });
     }
 
+    function close () {
+      modalInstance.close();
+      isOpened = false;
+    }
+
     return {
-      open: open
+      open: open,
+      close: close
     }
   }]);

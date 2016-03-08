@@ -24,7 +24,7 @@ angular.module('app')
 // It is not the same as the $uibModal service used above.
 
 angular.module('app')
-    .controller('ModalInstanceCtrl', function ($scope, $state, $uibModalInstance) {
+    .controller('ModalInstanceCtrl', function ($scope, $state, $uibModalInstance,ViewerService) {
     console.log('modal ctrl');
 
      $scope.next = function () {
@@ -38,7 +38,6 @@ angular.module('app')
          currPos = 0;
        }
        photoID = $scope.$parent.photos[currPos].pid;
-       $uibModalInstance.close();
        $state.go('albums.photos.viewer', {
            photoID: photoID
        });

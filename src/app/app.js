@@ -53,7 +53,7 @@ angular.module('app', [
   }])
 
   // If user isn't authenticated redirect him to login state
-  .run(function ($rootScope, $state, Auth, AlbumsModel) {
+  .run(function ($rootScope, $state, Auth, AlbumsModel, ViewerService) {
     $rootScope.$on('$stateChangeError', function (event, message) {
       event.preventDefault();
       console.log(event);
@@ -78,5 +78,22 @@ angular.module('app', [
             $state.go(aac);
         }
     });
+
+    $rootScope.$on('$stateChangeStart',
+      function(event, toState, toParams, fromState, fromParams){
+
+        if (fromState.url === toState.url) {
+          ViewerService.close();
+        }
+
+        if (fromState.url === "/:photoID" && toState.url === "/:albumId/photos") {
+          ViewerService.close();
+        }
+
+        console.log('toState : ', toState.url);
+        console.log('fromState: ', fromState.url);
+        // transitionTo() promise will be rejected with
+        // a 'transition prevented' error
+      });
   })
 ;
