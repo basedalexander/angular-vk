@@ -9,7 +9,7 @@ angular.module('app')
     ctrl.goAllPhotos = function () {
       $scope.currentAlbum = null;
       $state.go('albums');
-    }
+    };
 
     $scope.$on('albumEntered', function (event, title) {
       $scope.currentAlbum = title;

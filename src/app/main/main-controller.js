@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-  .controller('MainCtrl', [ '$state', '$scope', 'Auth', function ($state, $scope, Auth) {
+  .controller('MainCtrl', ['$scope', 'Auth', '$state',  function ($scope, Auth, $state) {
 
     var main = this;
 

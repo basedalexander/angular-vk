@@ -1,16 +1,24 @@
 "use strict";
 
-describe('MainCtrl', function() {
+// TODO test $on event listeners
+
+describe('Controller: MainCtrl', function() {
   var $controller;
-  var $rootScope;
+  var $rootScope,
+      Auth;
 
   beforeEach(module('app'));
 
   beforeEach(  inject(function(_$controller_, _$rootScope_) {
     $controller = _$controller_;
     $rootScope = _$rootScope_;
-  }));
+    Auth = {
+        logout: function () {
+      }
+    };
 
+    spyOn(Auth, 'logout');
+  }));
 
 
   it('currentUser should be null', function() {
@@ -29,11 +37,9 @@ describe('MainCtrl', function() {
       controller;
 
     scope = $rootScope.$new();
-    controller = $controller('MainCtrl', {$scope: scope});
+    controller = $controller('MainCtrl', {$scope: scope, Auth: Auth});
 
-    expect(scope.currentUser).toBe(null);
-
+    controller.logout();
+    expect(Auth.logout).toHaveBeenCalledTimes(1);
   });
-
-
 });

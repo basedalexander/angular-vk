@@ -1,7 +1,5 @@
 angular.module('app')
-.controller('ViewerCtrl', function ($scope, $log, $stateParams, $state, $rootScope, ViewerService) {
-
-  console.log('stateParams are : ' , $stateParams);
+.controller('ViewerCtrl', [ '$scope','$stateParams', 'ViewerService', function ($scope, $stateParams, ViewerService) {
 
   // In case of hard reloading on this state
   if ($scope.$parent.currentPhotoPos === null) {
@@ -20,7 +18,7 @@ angular.module('app')
     ViewerService.open($scope.$parent);
   }
 
-});
+}]);
 
 // Please note that $uibModalInstance represents a modal window (instance) dependency.
 // It is not the same as the $uibModal service used above.

@@ -6,7 +6,7 @@ angular.module('app.common')
     function getAll (albumId, callback) {
       var params = {
         album_id: albumId
-      }
+      };
       VK.Api.call('photos.get', params, function (res) {
         callback(res.response);
         console.log('Photos.get: ', res.response);

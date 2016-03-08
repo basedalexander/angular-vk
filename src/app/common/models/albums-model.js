@@ -6,7 +6,7 @@ angular.module('app.common')
       var params = {
         need_covers: 1,
         photo_sizes: 1
-      }
+      };
 
       VK.Api.call('photos.getAlbums', params, function (res) {
         callback(res.response);
@@ -16,7 +16,7 @@ angular.module('app.common')
     function getById (id, callback) {
       var params = {
         album_ids: id
-      }
+      };
 
       VK.Api.call('photos.getAlbums', params, function (res) {
         callback(res.response[0].title);
