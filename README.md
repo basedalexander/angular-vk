@@ -7,12 +7,10 @@ Clone the repository and install the dependencies:
 
 ### Prerequisites
 
-You need git to clone the angular-seed repository. You can get git from
-
-Also use a number of node.js tools to initialize and test angular-vk-photos. You must have node.js and
+You need git to clone the angular-vk-albums repository. You must have node.js and
 its package manager (npm) installed.  You can get them from [http://nodejs.org/](http://nodejs.org/).
 
-### Clone angular-seed
+### Clone angular-vk-albums
 
 ```
 git clone https://github.com/thohoh/angular-vk-albums
