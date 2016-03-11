@@ -21,25 +21,4 @@ describe('Controller: MainCtrl', function() {
   }));
 
 
-  it('currentUser should be null', function() {
-    var scope,
-      controller;
-
-    scope = $rootScope.$new();
-    controller = $controller('MainCtrl', {$scope: scope});
-
-    expect(scope.currentUser).toBe(null);
-
-  });
-
-  it('logout method should call Auth.logout', function() {
-    var scope,
-      controller;
-
-    scope = $rootScope.$new();
-    controller = $controller('MainCtrl', {$scope: scope, Auth: Auth});
-
-    controller.logout();
-    expect(Auth.logout).toHaveBeenCalledTimes(1);
-  });
 });

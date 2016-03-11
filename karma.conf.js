@@ -25,8 +25,10 @@ module.exports = function(config) {
         'src/app/app.js',
         'src/app/albums/*.js',
         'src/app/login/*.js',
+        'src/app/logout/*.js',
         'src/app/main/*.js',
         'src/app/photos/*.js',
+        'src/app/header/*.js',
         'test/**/*.spec.js'
     ],
 

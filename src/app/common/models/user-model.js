@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app.common')
-  .factory('UserModel', function () {
+  .factory('UserModel', function ($rootScope) {
 
     var currentUser = null;
 
@@ -26,6 +26,8 @@ angular.module('app.common')
 
       VK.Api.call(method, params, function (res) {
         currentUser = res.response[0];
+        $rootScope.$apply();
+        console.log('currentUser === ', res.response[0]);
         callback(res.response[0]);
       });
     }
@@ -34,6 +36,12 @@ angular.module('app.common')
       fetchInfo : fetchInfo,
       getCurrentUser: getCurrentUser,
       setCurrentUser: setCurrentUser,
+      getName: function () {
+        return first_name;
+      },
+      getAvatar: function () {
+        return avatar;
+      },
       getId: getId
     };
 

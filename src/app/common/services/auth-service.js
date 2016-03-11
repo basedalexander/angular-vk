@@ -1,23 +1,23 @@
 'use strict';
 
 angular.module('app.common')
-  .factory('Auth', ['UserModel', '$rootScope', '$q', function (UserModel, $rootScope, $q) {
+  .factory('Auth', ['UserModel', '$rootScope', '$q', '$state', function (UserModel, $rootScope, $q, $state) {
 
-    var requireAuth = false;
+    var isAuthenticated = false;
 
     // Imidiately checks whether user logged or not,
     // if yes, then fetch user details and send them to the scopes
     VK.Auth.getLoginStatus(function (res) {
       if (res.status === 'connected') {
         console.log('Session info: ', res);
-        requireAuth = false;
+        isAuthenticated = true;
         UserModel.fetchInfo(function (user) {
           console.log('User info : ', user);
           $rootScope.$broadcast('userLogged', user);
         });
       } else {
         console.log('user is not authenticated');
-        requireAuth = true;
+        isAuthenticated = false;
         $rootScope.$broadcast('auth_required');
       }
     });
@@ -27,12 +27,12 @@ angular.module('app.common')
       VK.Auth.login(function (res) {
         if (res.session) {
           console.log('Logged in : ' + res.session.user.domain);
-          requireAuth = false;
-
+          isAuthenticated = true;
           UserModel.fetchInfo(function (user) {
             console.log('User info : ', user);
             $rootScope.$broadcast('userLoggedIn', user);
           });
+          $state.go('albums.all');
         }
       }, 4);
     }
@@ -40,14 +40,15 @@ angular.module('app.common')
     function logout() {
       console.log('logged out');
       VK.Auth.logout();
-      $rootScope.$broadcast('userLoggedOut');
-      requireAuth = true;
+      //$rootScope.$broadcast('userLoggedOut');
+      UserModel.setCurrentUser = null;
+      isAuthenticated = false;
     }
 
 
     function needAuth() {
       return $q(function (resolve, reject) {
-        if (requireAuth) {
+        if (!isAuthenticated) {
           reject('auth_required');
         } else {
           resolve('allgood');
@@ -58,6 +59,9 @@ angular.module('app.common')
     return {
       login: login,
       logout: logout,
-      requireAuth: needAuth
+      requireAuth: needAuth,
+      isAuthenticated: function () {
+        return isAuthenticated;
+      }
     };
   }]);

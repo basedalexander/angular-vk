@@ -7,34 +7,12 @@
 
     <link rel="stylesheet" href="assets/css/app.css">
   </head>
-  <body ng-controller="MainCtrl as main"  ng-cloak class="bg-blue">
+  <body class="bg-blue">
 
 
     <div class="app-wrap">
-      <header class="navbar">
-        <div class="container">
-
-          <div class="nav-logo">
-            <a ui-sref="albums" class="brand"><img src="assets/images/camera_logo.png" alt="logo"/></a>
-          </div>
-
-          <nav class="nav-right">
-            <ul ng-show="currentUser" class='nav-right-list {{currentUser && "active"}}'>
-              <li>
-                <span class='nav-username'>{{currentUser.first_name}}</span>
-              </li>
-              <li class='user-avatar'>
-                  <img class='img-circle' ng-src="{{currentUser.photo_50}}" alt="user avatar"/>
-              </li>
-              <li>
-                <a ng-click="main.logout()">log out</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </header>
-
-      <div ui-view></div>
+        <div ng-include="'app/header/header.tmpl.html'"></div>
+        <div ui-view></div>
     </div>
 
     <!-- VK Open API -->
@@ -57,12 +35,15 @@
     <script src="app/common/common.js"></script>
     <script src="app/main/main-controller.js"></script>
 
+    <script src="app/header/header-controller.js"></script>
+
     <script src="app/albums/albums-controller.js"></script>
     <script src="app/albums/albums-all-controller.js"></script>
 
     <script src="app/photos/photos-controller.js"></script>
     <script src="app/photos/viewer-controller.js"></script>
     <script src="app/login/login-controller.js"></script>
+    <script src="app/logout/logout-controller.js"></script>
 
     <script src="app/common/models/user-model.js"></script>
     <script src="app/common/services/auth-service.js"></script>

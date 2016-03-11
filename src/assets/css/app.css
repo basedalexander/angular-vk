@@ -6927,6 +6927,14 @@ button.close {
   margin: 0 10px;
 }
 
+.img-circle {
+  outline: 0;
+  border: 0;
+  border-style: none;
+  width: 50px;
+  height: 50px;
+}
+
 @media (max-width: 450px) {
   .img-circle {
     width: 35px;
@@ -6952,7 +6960,6 @@ button.close {
 }
 
 .nav-right-list {
-  visibility: hidden;
   list-style-type: none;
   margin: 0;
   padding: 0;
