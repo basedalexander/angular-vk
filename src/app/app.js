@@ -77,15 +77,6 @@ angular.module('app', [
 
     });
 
-    // Detecting hard reloading on particular album state
-    $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-      if (toParams.albumId) {
-        AlbumsModel.getById(toParams.albumId, function (title) {
-          $rootScope.$broadcast('albumEntered', title);
-        })
-      }
-    });
-
     // Autoload 'all' view  when 'albums' view loaded
     $rootScope.$on('$stateChangeSuccess', function(event, toState){
         var aac;

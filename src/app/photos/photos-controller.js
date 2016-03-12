@@ -1,10 +1,15 @@
 'use strict';
 
 angular.module('app')
-    .controller('PhotosCtrl', [ '$stateParams', 'PhotosModel', '$scope', '$state', 'ViewerService', function($stateParams, PhotosModel, $scope, $state, ViewerService) {
+    .controller('PhotosCtrl', [ '$stateParams', 'PhotosModel', '$scope', '$state', 'ViewerService', 'AlbumsModel', function($stateParams, PhotosModel, $scope, $state, ViewerService, AlbumsModel) {
         var ctrl = this;
         $scope.currentPhotoPos = null;
+
         ctrl.albumId = $stateParams.albumId;
+
+        AlbumsModel.getById($stateParams.albumId, function (title) {
+          $scope.$parent.currentAlbum = title;
+        });
 
         // Save album id for cases when user quits from the viewer
         $scope.lastChoosenAlbumId = $stateParams.albumId;

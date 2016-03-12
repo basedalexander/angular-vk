@@ -16,6 +16,7 @@ angular.module('app')
     ctrl.getAlbums();
 
     ctrl.showAlbum = function (albumId) {
+      $scope.$parent.currentAlbum = null;
       $state.go('albums.photos', {
         albumId: albumId
       });
