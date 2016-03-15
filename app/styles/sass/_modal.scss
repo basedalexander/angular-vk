@@ -1,0 +1,72 @@
+.modal {
+  background: none;
+}
+
+.modal-body {
+  padding: 0 25px;
+  min-height: 400px;
+
+  @media (max-width: 992px) {
+    min-height: 200px;
+  }
+
+  @media (max-width: 768px) {
+    min-height: 250px;
+  }
+}
+
+.modal-dialog {
+  margin: 23px auto 30px;
+}
+
+.modal-content {
+  border-radius: 0;
+}
+
+.modal-header {
+  border-bottom: 0;
+}
+
+.modal-footer {
+  text-align: left;
+  border-top: 0;
+}
+
+
+.modal-summary {
+  padding: 0 15px;
+}
+
+.modal-info {
+  font-size: 12px;
+  float: left;
+  color: #45688E;
+  font-weight: bold;
+}
+
+.modal-close {
+  font-size: 12px;
+  float: right;
+  cursor: pointer;
+}
+
+.modal-img {
+  border: 0;
+  margin: 0 auto;
+  background: url(../images/progress_gray.gif) no-repeat 50% 50%;
+}
+
+.modal-img-link {
+  cursor: pointer;
+}
+
+
+
+
+.modal-desc {
+  float: left;
+  padding-left: 15px;
+  font-size: 12px;
+  height: 20px;
+}
+

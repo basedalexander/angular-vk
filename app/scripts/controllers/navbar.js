@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('app')
-  .controller('MainCtrl', function () {
+  .controller('NavbarCtrl', function () {
 
   });

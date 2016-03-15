@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "12",
   "version": "0.0.0",
   "description": "",
   "main": "index.js",
@@ -14,8 +14,6 @@
     "name": "Alex Kozlov",
     "email": "itrefa@gmail.com"
   },
-
-  "name": "12",
   "private": true,
   "devDependencies": {
     "autoprefixer-core": "^5.2.1",
@@ -42,6 +40,9 @@
     "grunt-svgmin": "^2.0.0",
     "grunt-usemin": "^3.0.0",
     "grunt-wiredep": "^2.0.0",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^2.2.0",
+    "gulp-sourcemaps": "^1.6.0",
     "jasmine-core": "^2.4.1",
     "jit-grunt": "^0.9.1",
     "jshint-stylish": "^1.0.0",

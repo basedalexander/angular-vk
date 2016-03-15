@@ -1,0 +1,26 @@
+html, body {
+    height: 100%;
+}
+
+
+body {
+    font-family: Verdana, Helvetica, Arial, sans-serif;
+    min-height: 100%;
+}
+*, *:before, *:after {box-sizing:  border-box !important;}
+
+.app-wrap {
+    border: 10px solid #f5ead9;
+    min-height: 100%;
+    padding: 10px;
+}
+
+
+.bg-blue {
+    background-color: #54769A;
+    -webkit-transition: background-color 500ms ease-out 1s;
+    -moz-transition: background-color 500ms ease-out 1s;
+    -o-transition: background-color 500ms ease-out 1s;
+    transition: background-color 0.5s ease;
+}
+
