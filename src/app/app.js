@@ -12,7 +12,6 @@ angular.module('app', [
 
       .state('main', {
         url: '/',
-        templateUrl: 'app/main/main.tmpl.html',
         controller: 'MainCtrl'
       })
 
