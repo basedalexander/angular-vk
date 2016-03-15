@@ -6,5 +6,5 @@ angular.module('app')
 
     $scope.submit = function () {
       auth.login($scope.email, $scope.password);
-    }
+    };
   });

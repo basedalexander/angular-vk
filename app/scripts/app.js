@@ -6,7 +6,7 @@ angular
     'ngAnimate'
   ])
 
-  .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+  .config(function ($stateProvider, $urlRouterProvider) {
 
     $stateProvider
 
@@ -39,6 +39,7 @@ angular
         controller: 'RegisterCtrl'
       });
 
+    $urlRouterProvider.otherwise('/');
 
     //$locationProvider.html5Mode(true);
   });

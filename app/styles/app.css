@@ -7070,6 +7070,11 @@ button.close {
   margin-bottom: 0;
 }
 
+.input-invalid {
+  color: darkred;
+  font-weight: bold;
+}
+
 .login-wrap {
   display: block;
   text-align: center;
