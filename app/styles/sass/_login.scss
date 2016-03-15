@@ -1,3 +1,15 @@
+.form-container {
+  background: #f5ead9;
+  padding: 50px;
+  width: 600px;
+  margin: 90px auto 0;
+
+  .form-group:last-child {
+    margin-bottom: 0;
+  }
+}
+
+
 
 .login-wrap {
    display: block;
@@ -7,7 +19,6 @@
 
 
 .form-signin {
-    min-height: 200px;
     width: 100%;
     max-width: 360px;
     min-height: 220px;

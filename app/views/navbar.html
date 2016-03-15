@@ -8,7 +8,7 @@
     <nav class="nav-right">
       <ul class='nav-right-list {{currentUser && "active"}}'>
         <li>
-          <a ui-sref="albums">My albums</a>
+          <a ui-sref="photos">My albums</a>
         </li>
         <li>
           <span class='nav-username'>{{getCurrentUser().first_name}}</span>
@@ -17,7 +17,10 @@
           <img class='img-circle' ng-src="{{getCurrentUser().photo_50}}"/>
         </li>
         <li>
-          <a ui-sref="logout">log out</a>
+          <a ui-sref="login">Log in</a>
+        </li>
+        <li>
+          <a ui-sref="logout">Log out</a>
         </li>
       </ul>
     </nav>

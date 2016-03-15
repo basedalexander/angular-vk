@@ -12,9 +12,33 @@ angular
 
       .state('main', {
         url: '/',
+        templateUrl: 'views/main.html',
         controller: 'MainCtrl'
+      })
+
+      .state('photos', {
+        url: '/photos',
+        templateUrl: 'views/photos.html',
+        controller: 'PhotosCtrl'
+      })
+
+      .state('login', {
+        url: '/login',
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl'
+      })
+
+      .state('logout', {
+        url: '/logout',
+        controller: 'LogoutCtrl'
+      })
+
+      .state('register', {
+        url: '/register',
+        templateUrl: 'views/register.html',
+        controller: 'RegisterCtrl'
       });
 
 
-    $locationProvider.html5Mode(true);
+    //$locationProvider.html5Mode(true);
   });
