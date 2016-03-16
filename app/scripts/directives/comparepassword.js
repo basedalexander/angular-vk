@@ -1,33 +1,26 @@
 'use strict';
 
 angular.module('app')
-  .directive('comparePassword', function () {
+  .directive('comparePassword', function() {
+    return {
+      restrict: 'A',
+      scope: {
+        matchTarget: '='
+      },
+      require: 'ngModel',
+      link: function link(scope, elem, attrs, ctrl) {
+        var validator = function(value) {
+          ctrl.$setValidity('match', value === scope.matchTarget);
+          return value;
+        };
 
-    var linker = function (scope, element, attrs, ngModelCtrl) {
+        ctrl.$parsers.unshift(validator);
+        ctrl.$formatters.push(validator);
 
-      console.log(scope);
-
-      function compare (value) {
-        var valid = (value === scope.$eval("password"));
-
-        ngModelCtrl.$setValidity('equal', valid);
-
-        return valid ? value : undefined;
+        scope.$watch('matchTarget', function() {
+          validator(ctrl.$viewValue);
+        });
 
       }
-
-      ngModelCtrl.$parsers.push(compare);
-      ngModelCtrl.$formatters.push(compare);
-
-      scope.$watch(attrs.comparePassword, function () {
-        compare(ngModelCtrl.$viewValue);
-      });
-    };
-
-
-    return {
-      require: 'ngModel',
-      //restrict: 'A',
-      link: linker
     };
   });

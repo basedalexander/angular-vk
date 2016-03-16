@@ -14,6 +14,29 @@
   font-weight: bold;
 }
 
+.control-label {
+  color: #54769A;
+}
+
+.has-success .control-label {
+  color: #54769A;
+}
+
+.has-success .form-control {
+  border-color: #62C564;
+}
+
+.has-success .form-control:focus {
+  border-color: #62C564;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #62C564;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+}
 
 .login-wrap {
    display: block;
