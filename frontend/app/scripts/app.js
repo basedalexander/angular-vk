@@ -42,4 +42,6 @@ angular
     $urlRouterProvider.otherwise('/');
 
     //$locationProvider.html5Mode(true);
-  });
+  })
+
+  .constant('API_URL', 'http://localhost:3000/');
