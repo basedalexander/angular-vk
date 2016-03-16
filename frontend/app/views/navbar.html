@@ -7,19 +7,19 @@
 
     <nav class="nav-right">
       <ul class='nav-right-list {{currentUser && "active"}}'>
-        <li>
+        <li ng-if='isAuthenticated()'>
           <a ui-sref="photos">My albums</a>
         </li>
-        <li>
+        <li ng-if='isAuthenticated()'>
           <span class='nav-username'>{{getCurrentUser().first_name}}</span>
         </li>
-        <li class='user-avatar'>
+        <li ng-if='isAuthenticated()' class='user-avatar'>
           <img class='img-circle' ng-src="{{getCurrentUser().photo_50}}"/>
         </li>
-        <li>
+        <li ng-if='!isAuthenticated()'>
           <a ui-sref="login">Log in</a>
         </li>
-        <li>
+        <li ng-if='isAuthenticated()'>
           <a ui-sref="logout">Log out</a>
         </li>
       </ul>
