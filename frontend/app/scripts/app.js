@@ -2,11 +2,10 @@
 
 angular
   .module('app', [
-    'ui.router',
-    'ngAnimate'
+    'ui.router'
   ])
 
-  .config(function ($stateProvider, $urlRouterProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
 
     $stateProvider
 
@@ -46,6 +45,7 @@ angular
       });
 
     $urlRouterProvider.otherwise('/');
+    $httpProvider.interceptors.push('authInterceptor');
 
     //$locationProvider.html5Mode(true);
   })

@@ -13,8 +13,8 @@ var app = express();
 app.set('jwtSecret', 'shhh...');
 
 app.use(bodyParser.json());
-app.use(jwtauth);
 app.use(headers);
+app.use(jwtauth);
 
 
 app.post('/register', function (req, res){
@@ -73,7 +73,7 @@ app.post('/login', function (req, res) {
 
 app.get('/notes', function (req, res) {
   if (!req.user) {
-    res.status(401).send('Token not found');
+    return res.status(401).send('Token not found');
   }
 
   res.status(200).send(req.user.getNotes());
