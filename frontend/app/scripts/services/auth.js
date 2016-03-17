@@ -45,5 +45,5 @@ angular.module('app')
     this.logout = function () {
       authToken.removeToken();
       $state.go('login');
-    }
+    };
   });

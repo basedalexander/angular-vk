@@ -6,7 +6,8 @@ var bcrypt = require('bcrypt');
 var userSchema = mongoose.Schema({
   name: String,
   email: String,
-  password: String
+  password: String,
+  notes: Array
 });
 
 userSchema.methods.comparePassword = function (password, callback) {
@@ -18,6 +19,11 @@ userSchema.methods.toJSON = function (callback) {
   var user = this.toObject();
   delete user.password;
   return user;
+};
+
+userSchema.methods.getNotes = function () {
+  var user = this.toObject();
+  return user.notes;
 };
 
 

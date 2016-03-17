@@ -22,6 +22,12 @@ angular
         controller: 'PhotosCtrl'
       })
 
+      .state('notes', {
+        url: '/notes',
+        templateUrl: 'views/notes.html',
+        controller: 'NotesCtrl'
+      })
+
       .state('login', {
         url: '/login',
         templateUrl: 'views/login.html',

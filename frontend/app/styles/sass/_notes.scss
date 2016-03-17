@@ -1,0 +1,41 @@
+.add_note {
+  width: 100%;
+  text-align: center;
+  height: 50px;
+  margin-bottom: 10px;
+  background: #F5EAD9;
+  border: none;
+
+  &:hover {
+    background: #F9E7CB;
+  }
+
+}
+
+.note-item {
+  position: relative;
+  padding: 0 20px 5px;
+  margin-bottom: 10px;
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+  cursor: pointer;
+  word-wrap: break-word;
+  background: #F5EAD9;
+  box-shadow: 0 2px 8px #333;
+
+  &:hover {
+    background: #F9E7CB;
+  }
+}
+
+.delete_note-btn {
+  top: 5px;
+  right: 5px;
+  position: absolute;
+  opacity: .5;
+  border: none;
+  background: none;
+  &:hover {
+    opacity: 1;
+  }
+}

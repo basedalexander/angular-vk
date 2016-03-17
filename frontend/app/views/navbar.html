@@ -6,9 +6,12 @@
     </div>
 
     <nav class="nav-right">
-      <ul class='nav-right-list {{currentUser && "active"}}'>
+      <ul class='nav-right-list app-navbar'>
         <li ng-if='isAuthenticated()'>
-          <a ui-sref="photos">My albums</a>
+          <a ui-sref-active='active' ui-sref="notes">My notes</a>
+        </li>
+        <li ng-if='isAuthenticated()'>
+          <a ui-sref-active='active' ui-sref="photos">My albums</a>
         </li>
         <li ng-if='isAuthenticated()'>
           <span class='nav-username'>{{getCurrentUser().first_name}}</span>
