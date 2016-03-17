@@ -79,9 +79,16 @@ app.get('/notes', function (req, res) {
   res.status(200).send(req.user.getNotes());
 });
 
+app.post('/notes', function (req, res) {
+  if (!req.user) {
+    return res.status(401).send('Token not found');
+  }
+
+  res.status(200).send(req.user.saveNote(req.body));
+});
 
 function createSendResponse (user, res) {
-  var expires = moment().add(5, 'minutes').valueOf();
+  var expires = moment().add(25, 'minutes').valueOf();
   var token = jwt.encode({
     iss: user.id,
     exp: expires

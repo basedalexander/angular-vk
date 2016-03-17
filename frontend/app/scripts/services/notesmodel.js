@@ -16,5 +16,34 @@ angular.module('app')
         });
 
       return deferred.promise;
+    };
+
+    this.saveNote = function (note) {
+      var deferred = $q.defer();
+
+      $http.post(API_URL + 'notes', note)
+        .success(function (response) {
+          deferred.resolve(response);
+        })
+        .error(function (reason) {
+          deferred.reject(reason);
+        });
+
+      return deferred.promise;
+    };
+
+
+    this.removeNote = function (note) {
+      var deferred = $q.defer();
+
+      $http.delete(API_URL + 'notes', note)
+        .success(function (response) {
+          deferred.resolve(response);
+        })
+        .error(function (reason) {
+          deferred.reject(reason);
+        });
+
+      return deferred.promise;
     }
   });
