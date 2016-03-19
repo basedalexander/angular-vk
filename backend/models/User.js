@@ -26,10 +26,8 @@ userSchema.methods.getNotes = function () {
   return user.notes;
 };
 
-userSchema.methods.saveNote = function (note) {
-  var user = this.toObject();
-  user.notes.push(note);
-  return user.notes
+userSchema.methods.saveNote = function (note, callback) {
+  mongoose.model('User').findOneAndUpdate({_id: this.id}, { $push : {notes: note}}, callback);
 };
 
 

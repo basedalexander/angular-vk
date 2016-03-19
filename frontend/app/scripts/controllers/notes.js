@@ -37,6 +37,18 @@ angular.module('app')
             console.log("Can't save new note: ", reason);
           }
         );
-    }
+    };
 
+    $scope.removeNote = function (note) {
+      console.log('deleting note: ', note);
+      notesModel.removeNote(note)
+        .then(
+        function (response) {
+          onSuccess(response);
+        },
+        function (reason) {
+          console.log("Can't delete new note: ", reason);
+        }
+      );
+    }
   });

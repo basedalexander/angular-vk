@@ -1,7 +1,7 @@
 <div class="col-sm-4 notes_col">
   <button class="add_note" ng-click="addNewNote()">+</button>
   <div ng-repeat='note in notes' class="note-item">
-    <button ng-click='removeNote()' class="delete_note-btn">x</button>
+    <button ng-click='removeNote(note)' class="delete_note-btn">x</button>
     <h3>{{note.title}}</h3>
     <p>{{note.text}}</p>
   </div>
