@@ -1,12 +1,13 @@
 'use strict';
 
 var express = require('express');
+var routes = require('./routes/routes');
 var bodyParser = require('body-parser');
-var headers = require('./middlewares/res-headers.js');
+var headers = require('./middlewares/res-headers');
 var mongoose = require('mongoose');
-var User = require('./models/User.js');
+var User = require('./models/User');
 var jwt = require('jwt-simple');
-var jwtauth = require('./middlewares/jwtauth.js');
+var jwtauth = require('./middlewares/jwtauth');
 var moment = require('moment');
 
 var app = express();
@@ -15,6 +16,7 @@ app.set('jwtSecret', 'shhh...');
 app.use(bodyParser.json());
 app.use(headers);
 app.use(jwtauth);
+app.use('/', routes);
 
 
 app.post('/register', function (req, res){
@@ -71,21 +73,6 @@ app.post('/login', function (req, res) {
   });
 });
 
-app.get('/notes', function (req, res) {
-  if (!req.user) {
-    return res.status(401).send('Token not found');
-  }
-
-  res.status(200).send(req.user.getNotes());
-});
-
-app.post('/notes', function (req, res) {
-  if (!req.user) {
-    return res.status(401).send('Token not found');
-  }
-
-  res.status(200).send(req.user.saveNote(req.body));
-});
 
 function createSendResponse (user, res) {
   var expires = moment().add(25, 'minutes').valueOf();
