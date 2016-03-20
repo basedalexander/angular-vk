@@ -39,27 +39,52 @@ router.post('/notes', function(req, res, next) {
   });
 });
 
-router.put('/notes', function(req, res, next) {
+router.put('/notes/:noteId', function(req, res, next) {
+  if (!req.user) {
+    return res.status(401).send('Token not found');
+  }
+
+  var userId = req.user.id;
+  var noteQuery = { 'notes._id' : req.params.noteId };
+  var noteUpdate = {
+    $set: {
+      'notes.$.title' : req.body.title,
+      'notes.$.text' : req.body.text
+    }
+  };
+
+  mongoose.model('User').update(noteQuery, noteUpdate, function (err, result) {
+    if (err) { return console.log('NOTE UPDATE ERROR ', err); }
+
+    mongoose.model('User').findById(userId, function (err, user) {
+      res.send(user.notes);
+    });
+  });
+});
+
+router.delete('/notes/:noteId', function(req, res, next) {
 
   if (!req.user) {
     return res.status(401).send('Token not found');
   }
 
-  var query = { _id: req.user.id };
+  var query = req.user.id;
   var update = {
     $pull: {
-      notes: req.body
+      notes: {
+        _id: req.params.noteId
+      }
     }
   };
   var options = {
     new: true
   };
 
-  mongoose.model('User').findOneAndUpdate(query, update, options, function (err, user) {
+  mongoose.model('User').findByIdAndUpdate(query, update, options, function (err, user) {
     if (err) { return console.log(err);}
+
     res.send(user.notes);
   });
 });
-
 
 module.exports = router;

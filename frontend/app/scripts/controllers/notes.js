@@ -36,8 +36,14 @@ angular.module('app')
       $scope.showNoteText = '';
     };
 
-    $scope.updateNote = function () {
+    $scope.updateNote = function (noteId) {
+      var fields = {
+        title: $scope.showNoteTitle,
+        text: $scope.showNoteText
+      };
 
+      notesModel.updateNote(noteId, fields)
+        .then(onSuccess, handleError);
     };
 
     $scope.addNewNote = function () {
@@ -64,15 +70,10 @@ angular.module('app')
         );
     };
 
-    $scope.removeNote = function (note) {
+    $scope.removeNote = function (noteId) {
 
-      note = {
-        title : note.title,
-        text : note.text
-      };
-
-      console.log('deleting note: ', note);
-      notesModel.removeNote(note)
+      console.log('deleting note: ', noteId);
+      notesModel.removeNote(noteId)
         .then(onSuccess, handleError);
 
     };

@@ -4,7 +4,7 @@
     ng-click="showNote(note)"
     ng-repeat='note in notes'
     class="note-item">
-    <button ng-click='removeNote(note)' class="delete_note-btn">x</button>
+    <button ng-click='removeNote(note._id); $event.stopPropagation();' class="delete_note-btn">x</button>
     <h3>{{note.title | limitTo: 30}}</h3>
     <p>{{note.text | limitTo: 60}}</p>
   </div>
@@ -50,7 +50,7 @@
 <div ng-show='showingNote' class="add-note-form col-sm-8">
   <form
     name="showNoteForm"
-    ng-submit="saveNewNote()"
+    ng-submit="updateNote(currentNote._id)"
     novalidate>
 
     <!-- NOTE TITLE -->

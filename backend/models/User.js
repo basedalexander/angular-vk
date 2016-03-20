@@ -3,11 +3,18 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 
+
+var notesSchema = mongoose.Schema({
+  title: { type: String, required: true},
+  text: String,
+  createdAt: { type: Date, default: Date.now() }
+});
+
 var userSchema = mongoose.Schema({
   name: String,
   email: String,
   password: String,
-  notes: Array
+  notes:[notesSchema]
 });
 
 userSchema.methods.comparePassword = function (password, callback) {
@@ -18,6 +25,7 @@ userSchema.methods.comparePassword = function (password, callback) {
 userSchema.methods.toJSON = function (callback) {
   var user = this.toObject();
   delete user.password;
+  delete user.notes;
   return user;
 };
 

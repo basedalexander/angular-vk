@@ -32,11 +32,24 @@ angular.module('app')
       return deferred.promise;
     };
 
-
-    this.removeNote = function (note) {
+    this.updateNote = function (noteId, fields) {
       var deferred = $q.defer();
 
-      $http.put(API_URL + 'notes', note)
+      $http.put(API_URL + 'notes' + '/' + noteId, fields)
+        .success(function (response) {
+          deferred.resolve(response);
+        })
+        .error(function (reason) {
+          deferred.reject(reason);
+        });
+
+      return deferred.promise;
+    };
+
+    this.removeNote = function (noteId) {
+      var deferred = $q.defer();
+
+      $http.delete(API_URL + 'notes' + '/' + noteId)
         .success(function (response) {
           deferred.resolve(response);
         })

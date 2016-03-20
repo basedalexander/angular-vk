@@ -75,7 +75,7 @@ app.post('/login', function (req, res) {
 
 
 function createSendResponse (user, res) {
-  var expires = moment().add(25, 'minutes').valueOf();
+  var expires = moment().add(125, 'minutes').valueOf();
   var token = jwt.encode({
     iss: user.id,
     exp: expires
