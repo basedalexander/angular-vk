@@ -5,6 +5,7 @@ angular.module('app')
     $scope.notes = [];
     // Sub-states
     $scope.addingNewNote = false;
+    $scope.showingNote = false;
 
     notesModel.getNotes().then(onSuccess, handleError);
 
@@ -17,7 +18,31 @@ angular.module('app')
       console.log( "can't get notes " + reason);
     }
 
+    $scope.showNote = function (note) {
+      if ($scope.addingNewNote) { $scope.cancelAddNote(); }
+
+      $scope.showingNote = true;
+      $scope.currentNote = note;
+
+      $scope.showNoteTitle = note.title;
+      $scope.showNoteText = note.text;
+    };
+
+    $scope.closeNote = function () {
+      $scope.showingNote = false;
+      $scope.currentNote = false;
+
+      $scope.showNoteTitle = '';
+      $scope.showNoteText = '';
+    };
+
+    $scope.updateNote = function () {
+
+    };
+
     $scope.addNewNote = function () {
+      if ($scope.showingNote) { $scope.closeNote();}
+
       $scope.addingNewNote = true;
     };
 
@@ -30,9 +55,7 @@ angular.module('app')
       notesModel.saveNote(note)
         .then(
           function (response) {
-            $scope.addingNewNote = false;
-            $scope.newNoteTitle = '';
-            $scope.newNoteText = '';
+            $scope.cancelAddNote();
             onSuccess(response);
           },
           function (reason) {
@@ -52,5 +75,11 @@ angular.module('app')
       notesModel.removeNote(note)
         .then(onSuccess, handleError);
 
-    }
+    };
+
+    $scope.cancelAddNote = function () {
+      $scope.addingNewNote = false;
+      $scope.newNoteTitle = '';
+      $scope.newNoteText = '';
+    };
   });

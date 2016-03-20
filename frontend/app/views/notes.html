@@ -1,9 +1,12 @@
 <div class="col-sm-4 notes_col">
   <button class="add_note" ng-click="addNewNote()">+</button>
-  <div ng-repeat='note in notes' class="note-item">
+  <div
+    ng-click="showNote(note)"
+    ng-repeat='note in notes'
+    class="note-item">
     <button ng-click='removeNote(note)' class="delete_note-btn">x</button>
-    <h3>{{note.title}}</h3>
-    <p>{{note.text}}</p>
+    <h3>{{note.title | limitTo: 30}}</h3>
+    <p>{{note.text | limitTo: 60}}</p>
   </div>
 </div>
 
@@ -39,6 +42,42 @@
 
     <!-- BUTTONS -->
     <button ng-disabled='newNoteForm.$invalid' type="submit" class="btn btn-default">Save</button>
-    <button type="button" class="btn btn-default">Cancel</button>
+    <button ng-click='cancelAddNote()' type="button" class="btn btn-default">Cancel</button>
+  </form>
+</div>
+
+
+<div ng-show='showingNote' class="add-note-form col-sm-8">
+  <form
+    name="showNoteForm"
+    ng-submit="saveNewNote()"
+    novalidate>
+
+    <!-- NOTE TITLE -->
+    <div class="form-group">
+      <label>Title</label>
+      <input
+        name="show-note-title"
+        ng-model="showNoteTitle"
+        type="text"
+        class="form-control"
+        required>
+    </div>
+
+    <!-- NOTE TEXT -->
+    <div class="form-group">
+      <label>Note text</label>
+      <textarea
+        name="show-note-text"
+        ng-model="showNoteText"
+        class="form-control"
+        cols="30"
+        rows="20">
+      </textarea>
+    </div>
+
+    <!-- BUTTONS -->
+    <button ng-disabled='showNoteForm.$invalid' type="submit" class="btn btn-default">Save</button>
+    <button ng-click='closeNote()' type="button" class="btn btn-default">Close</button>
   </form>
 </div>
