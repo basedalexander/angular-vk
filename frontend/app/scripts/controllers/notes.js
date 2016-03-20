@@ -31,6 +31,8 @@ angular.module('app')
         .then(
           function (response) {
             $scope.addingNewNote = false;
+            $scope.newNoteTitle = '';
+            $scope.newNoteText = '';
             onSuccess(response);
           },
           function (reason) {
@@ -40,15 +42,15 @@ angular.module('app')
     };
 
     $scope.removeNote = function (note) {
+
+      note = {
+        title : note.title,
+        text : note.text
+      };
+
       console.log('deleting note: ', note);
       notesModel.removeNote(note)
-        .then(
-        function (response) {
-          onSuccess(response);
-        },
-        function (reason) {
-          console.log("Can't delete new note: ", reason);
-        }
-      );
+        .then(onSuccess, handleError);
+
     }
   });

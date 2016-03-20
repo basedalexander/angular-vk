@@ -39,12 +39,11 @@ router.post('/notes', function(req, res, next) {
   });
 });
 
-router.delete('/notes', function(req, res, next) {
+router.put('/notes', function(req, res, next) {
 
   if (!req.user) {
     return res.status(401).send('Token not found');
   }
-
 
   var query = { _id: req.user.id };
   var update = {
@@ -58,7 +57,6 @@ router.delete('/notes', function(req, res, next) {
 
   mongoose.model('User').findOneAndUpdate(query, update, options, function (err, user) {
     if (err) { return console.log(err);}
-    console.log(user.notes);
     res.send(user.notes);
   });
 });

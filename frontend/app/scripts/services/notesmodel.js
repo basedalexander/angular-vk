@@ -36,7 +36,7 @@ angular.module('app')
     this.removeNote = function (note) {
       var deferred = $q.defer();
 
-      $http.delete(API_URL + 'notes', note)
+      $http.put(API_URL + 'notes', note)
         .success(function (response) {
           deferred.resolve(response);
         })
