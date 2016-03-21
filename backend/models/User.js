@@ -34,9 +34,9 @@ userSchema.methods.getNotes = function () {
   return user.notes;
 };
 
-userSchema.methods.saveNote = function (note, callback) {
-  mongoose.model('User').findOneAndUpdate({_id: this.id}, { $push : {notes: note}}, callback);
-};
+//userSchema.methods.saveNote = function (note, callback) {
+//  mongoose.model('User').findOneAndUpdate({_id: this.id}, { $push : {notes: note}}, callback);
+//};
 
 
 userSchema.pre('save', function (next) {

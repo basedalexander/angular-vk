@@ -16,7 +16,7 @@
         <li ng-if='isAuthenticated()'>
           <span class='nav-username'>{{getCurrentUser().first_name}}</span>
         </li>
-        <li ng-if='isAuthenticated()' class='user-avatar'>
+        <li ng-if='false' class='user-avatar'>
           <img class='img-circle' ng-src="{{getCurrentUser().photo_50}}"/>
         </li>
         <li ng-if='!isAuthenticated()'>

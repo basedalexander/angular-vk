@@ -58,5 +58,5 @@ angular.module('app')
         });
 
       return deferred.promise;
-    }
+    };
   });
