@@ -51,12 +51,15 @@ angular
   })
 
   .run(function ($window) {
+
     var params = $window.location.search.substring(1);
 
     if (params && $window.opener && $window.opener.location.origin) {
       var pair = params.split('=');
       var type = pair[0];
       var code = decodeURIComponent(pair[1]);
+      console.log('type :', type);
+      console.log('code: ', code);
 
       if (type === 'error') {
         return $window.opener.postMessage(type, $window.location.origin);

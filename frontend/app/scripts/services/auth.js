@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-  .service('auth', function ($http, $window, $state, authToken, API_URL, VK_OAUTH_URL,$q) {
+  .service('auth', function ($http, $window, $state, authToken, API_URL, VK_OAUTH_URL, $q) {
 
 
     this.register = function (user) {
@@ -20,6 +20,10 @@ angular.module('app')
 
       return deferred.promise;
     };
+
+
+
+
 
     this.login = function (email,password) {
       var user = {
@@ -42,59 +46,99 @@ angular.module('app')
       return deferred.promise;
     };
 
+
+
+
     this.logout = function () {
       authToken.removeToken();
       $state.go('login');
     };
 
+
+
     this.loginVK = function () {
+      var popup,
+        deferred,
+        intervalId;
 
-      var deferred = $q.defer();
+      deferred = $q.defer();
 
-      var url = VK_OAUTH_URL;
+      openPopup();
 
-      var urlParams = [
-        'client_id=' + 5352704,
-        'scope=' + 4, // email: 4194304
-        'redirect_uri=' + $window.location.origin,
-        'response_type=code',
-        'v=' + 5.50
-      ];
-
-      var options = 'width=800, height=500, left=' + ($window.outerWidth - 800)/2
-        + ', to=' + ($window.outerHeight - 500)/2;
-
-      url = url + urlParams.join('&');
-
-      var popup = $window.open(url, '', options);
-
-      $window.addEventListener('message', listener);
-
-      function listener (event) {
-        var body;
-
-        popup.close();
+      function messageListener (event) {
+        console.log('got event ', event.data);
+        closePopup();
 
         if (event.data === 'error') {
-          return deferred.reject('User denied');
+          return deferred.reject('User denied authentication');
         }
 
-        console.log('user accepted');
+        sendCode(event.data);
+      }
 
-        body = {
-          code: event.data,
-          redirect_uri: $window.location.origin,
+      function openPopup () {
+        var url,
+          urlParams,
+          options;
+
+        urlParams = [
+          'client_id=' + 5352704,
+          'scope=' + 4, // email: 4194304
+          'redirect_uri=' + $window.location.origin,
+          'response_type=code',
+          'v=' + 5.50
+        ];
+
+        url = VK_OAUTH_URL + urlParams.join('&');
+        options = 'width=800, height=500, left=' + ($window.outerWidth - 800)/2 + ', to=' + ($window.outerHeight - 500)/2;
+        popup = $window.open(url, '', options);
+
+
+        $window.addEventListener('message', messageListener);
+        checkIfPopupClosed();
+      }
+
+      function closePopup () {
+        $window.removeEventListener('message', messageListener);
+        $window.clearInterval(intervalId);
+        popup.close();
+      }
+
+      function checkIfPopupClosed () {
+
+        // That weird trick used because of same origin
+        // policy between windows
+        intervalId = $window.setInterval(function () {
+          if (popup.closed) {
+            $window.clearInterval(intervalId);
+            intervalId = null;
+            onPopupClosed();
+          }
+        }, 500);
+      }
+
+      function onPopupClosed () {
+        $window.removeEventListener('message', messageListener);
+        deferred.reject('User closed popup');
+      }
+
+      function sendCode (code) {
+        var body = {
+          code: code,
+          redirect_uri: $window.location.origin
         };
 
         $http.post(API_URL + 'login/vk', body)
           .success(function (response) {
             console.log('response1! ', response);
+            deferred.resolve(response);
           })
           .error(function (reason) {
             console.log('reason : ', reason);
+            deferred.reject(reason);
           });
       }
 
       return deferred.promise;
-    }
+    };
   });
