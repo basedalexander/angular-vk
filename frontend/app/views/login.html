@@ -1,4 +1,38 @@
 <div class="form-container">
+  <h2 class="auth-title">Log in</h2>
+
+  <div class="auth-btns col-sm-offset-2 col-sm-10">
+
+    <!-- VK.COM -->
+    <button
+      ng-click="loginVK()"
+      type="button"
+      class="auth-btn">
+      VK
+    </button>
+
+    <button
+      ng-click="loginVK()"
+      type="button"
+      class="auth-btn">
+      VK
+    </button>
+
+    <button
+      ng-click="loginVK()"
+      type="button"
+      class="auth-btn">
+      VK
+    </button>
+
+    <button
+      ng-click="loginVK()"
+      type="button"
+      class="auth-btn">
+      VK
+    </button>
+  </div>
+
   <form name='loginForm' ng-submit='submit()' class="form-horizontal" novalidate>
 
     <!-- EMAIL -->
@@ -35,7 +69,7 @@
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
         <button ng-disabled='loginForm.$invalid' type="submit" class="btn btn-default">Sign in</button>
-        <br/>
+        <hr class="login-hr"/>
         <a ui-sref="register" class="pull-right">Register</a>
       </div>
     </div>

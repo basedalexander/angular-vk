@@ -50,4 +50,21 @@ angular
     //$locationProvider.html5Mode(true);
   })
 
-  .constant('API_URL', 'http://localhost:3000/');
+  .run(function ($window) {
+    var params = $window.location.search.substring(1);
+
+    if (params && $window.opener && $window.opener.location.origin) {
+      var pair = params.split('=');
+      var type = pair[0];
+      var code = decodeURIComponent(pair[1]);
+
+      if (type === 'error') {
+        return $window.opener.postMessage(type, $window.location.origin);
+      }
+
+      $window.opener.postMessage(code, $window.location.origin);
+    }
+  })
+
+  .constant('API_URL', 'http://localhost:3000/')
+  .constant('VK_OAUTH_URL', 'https://oauth.vk.com/authorize?');

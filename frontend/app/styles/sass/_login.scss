@@ -58,15 +58,43 @@ input:-webkit-autofill:active {
 }
 
 
-.login-title {
-    color: #333;
+.auth-title {
+    color: #7a8195;
     font-size: 24px;
+    font-weight: bold;
+    margin-top: 0;
     margin-bottom: 19px;
 }
 
-.vk_login-btn {
-    cursor: pointer;
+.auth-btns {
+  margin-bottom: 20px;
+  padding-left: 0;
 }
+
+.auth-btn {
+  margin-right: 5px;
+  background: #54769A;
+  opacity: .5;
+  color: #fff;
+  font-weight: bold;
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+  border-style: none;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &:focus {
+    color: #fff;
+  }
+}
+
+.login-hr {
+  border-color: #CCC;
+}
+
 
 .form-signin input[type=text],
 .form-signin input[type=email],

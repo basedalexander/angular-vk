@@ -15,4 +15,8 @@ angular.module('app')
       auth.login($scope.loginEmail, $scope.loginPassword)
         .then(onSuccess, handleError);
     };
+
+    $scope.loginVK = function () {
+      auth.loginVK().then(onSuccess, handleError);
+    };
   });
