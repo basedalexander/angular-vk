@@ -11,6 +11,8 @@ angular.module('app')
       console.log('Something is wrong ', reason);
     };
 
+    var onVKSuccess
+
     $scope.submit = function () {
       auth.login($scope.loginEmail, $scope.loginPassword)
         .then(onSuccess, handleError);

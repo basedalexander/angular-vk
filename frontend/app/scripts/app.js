@@ -2,7 +2,8 @@
 
 angular
   .module('app', [
-    'ui.router'
+    'ui.router',
+    'ui.bootstrap'
   ])
 
   .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
@@ -42,6 +43,12 @@ angular
         url: '/register',
         templateUrl: 'views/register.html',
         controller: 'RegisterCtrl'
+      })
+
+      .state('settings', {
+        url: '/settings',
+        templateUrl: 'views/settings.html',
+        controller: 'SettingsCtrl'
       });
 
     $urlRouterProvider.otherwise('/');

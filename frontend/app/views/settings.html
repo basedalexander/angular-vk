@@ -1,0 +1,53 @@
+<div class="settings-container">
+
+  <h2 class="auth-title">Settings</h2>
+
+
+
+
+
+  <form name='settingsForm' ng-submit='submit()' class="form-horizontal" novalidate>
+
+    <!-- NAME -->
+    <div class="form-group">
+      <label for="userName" class="col-sm-2 control-label">Name</label>
+      <div class="col-sm-10">
+        <input
+          name="user-name"
+          ng-model="user.name"
+          type="text"
+          class="form-control"
+          id="userName"
+          placeholder="Name"
+          required>
+      </div>
+    </div>
+
+
+    <div class="attached-accounts col-sm-10 col-sm-offset-2">
+
+      <hr/>
+
+      <div class="auth-btns">
+        <h4 class="settings-attach-account-header">Attach account</h4>
+        <!-- VK.COM -->
+        <button
+          ng-click="loginVK()"
+          type="button"
+          class="auth-btn">
+          VK
+        </button>
+
+      </div>
+    </div>
+
+
+
+    <!-- BUTTON -->
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button ng-disabled='settingsForm.$pristine' type="submit" class="btn btn-primary">Update</button>
+      </div>
+    </div>
+  </form>
+</div>

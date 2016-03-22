@@ -83,7 +83,7 @@ angular.module('app')
 
         urlParams = [
           'client_id=' + 5352704,
-          'scope=' + 4, // email: 4194304
+          'scope=' + (4 + 4194304), // email: 4194304
           'redirect_uri=' + $window.location.origin,
           'response_type=code',
           'v=' + 5.50
@@ -131,10 +131,20 @@ angular.module('app')
         $http.post(API_URL + 'login/vk', body)
           .success(function (response) {
             console.log('response1! ', response);
+            authToken.setToken(response.token);
             deferred.resolve(response);
+            $state.go('main');
           })
-          .error(function (reason) {
-            console.log('reason : ', reason);
+          .error(function (response) {
+            if (response.reason === 'not_attached') {
+              console.log('reason : ', response.reason);
+              deferred.reject(response);
+              $state.go('register', {
+                user: response.user
+              });
+              return;
+            }
+
             deferred.reject(reason);
           });
       }

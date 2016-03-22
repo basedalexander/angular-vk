@@ -7,13 +7,11 @@ var bodyParser = require('body-parser');
 var headers = require('./middlewares/res-headers');
 var mongoose = require('mongoose');
 var User = require('./models/User');
-var jwt = require('jwt-simple');
+var jwt = require('./services/jwt');
 var jwtauth = require('./middlewares/jwtauth');
-var moment = require('moment');
 var request = require('request');
 
 var app = express();
-app.set('jwtSecret', 'shhh...');
 
 app.use(bodyParser.json());
 app.use(headers);
@@ -44,7 +42,7 @@ app.post('/register', function (req, res){
        return res.status(401).send('Error while saving the user');
      }
 
-      createSendResponse(newUser, res);
+      jwt.createAndSend(newUser, res);
     });
   })
 });
@@ -71,25 +69,11 @@ app.post('/login', function (req, res) {
         return res.status(401).send('Invalid login or password');
       }
 
-      createSendResponse(foundUser, res);
+      jwt.createAndSend(foundUser, res);
     });
   });
 });
 
-
-function createSendResponse (user, res) {
-  var expires = moment().add(125, 'minutes').valueOf();
-  var token = jwt.encode({
-    iss: user.id,
-    exp: expires
-  }, app.get('jwtSecret'));
-
-  res.json({
-    token: token,
-    expires: expires,
-    user: user.toJSON()
-  });
-}
 
 mongoose.connect('mongodb://localhost/appdata');
 

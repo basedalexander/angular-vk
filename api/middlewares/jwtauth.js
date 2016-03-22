@@ -1,7 +1,7 @@
 'use strict';
 
 var User = require('../models/User.js');
-var jwt = require('jwt-simple');
+var jwt = require('../services/jwt');
 
 var jwtSecret = 'shhh...';
 
@@ -10,7 +10,7 @@ module.exports = function (req, res, next) {
   console.log('jwtAuth invoked');
   if (token) {
     try {
-      var decoded = jwt.decode(token, jwtSecret);
+      var decoded = jwt.decode(token);
 
       if (decoded.exp <= Date.now()) {
         return res.status(400).send('Access token has expired');
