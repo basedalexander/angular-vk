@@ -1,9 +1,22 @@
 'use strict';
 
 angular.module('app')
-  .controller('SettingsCtrl', function ($scope) {
+  .controller('SettingsCtrl', function ($scope, userModel) {
 
-    $scope.getUserData = function () {
+    userModel.getData()
+      .then(onSuccess, handleError);
 
+    function onSuccess (response) {
+      $scope.user = response;
+      console.log('settings, got user: ', response);
+    }
+
+    function handleError (reason) {
+      console.log('setting, error gettting user ', reason);
+    }
+
+    $scope.attachVK = function () {
+      userModel.attachVK()
+        .then(onSuccess, handleError);
     }
   });

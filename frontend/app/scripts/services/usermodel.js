@@ -1,61 +1,24 @@
 'use strict';
 
+
 angular.module('app')
-  .service('auth', function ($http, $window, $state, authToken, API_URL, VK_OAUTH_URL, $q) {
+  .service('userModel', function ($http, API_URL, VK_OAUTH_URL, $q, $window) {
 
-
-    this.register = function (user) {
-
+    this.getData = function () {
       var deferred = $q.defer();
 
-      $http.post(API_URL + 'register', user)
+      $http.get(API_URL + 'user')
         .success(function (response) {
-          authToken.setToken(response.token);
           deferred.resolve(response);
-          $state.go('main');
         })
-        .error(function (error) {
-          deferred.reject(error);
+        .error(function (reason) {
+          deferred.reject(reason);
         });
 
       return deferred.promise;
     };
 
-
-
-
-    this.login = function (email,password) {
-      var user = {
-        email: email,
-        password: password
-      };
-
-      var deferred = $q.defer();
-
-      $http.post(API_URL + 'login', user)
-        .success(function (response) {
-          authToken.setToken(response.token);
-          deferred.resolve(response);
-          $state.go('main');
-        })
-        .error(function (error) {
-          deferred.reject(error);
-        });
-
-      return deferred.promise;
-    };
-
-
-
-
-    this.logout = function () {
-      authToken.removeToken();
-      $state.go('login');
-    };
-
-
-
-    this.loginVK = function () {
+    this.attachVK = function () {
       var popup,
         deferred,
         intervalId;
@@ -127,27 +90,15 @@ angular.module('app')
           redirect_uri: $window.location.origin
         };
 
-        $http.post(API_URL + 'login/vk', body)
+        $http.post(API_URL + 'user/attachVK', body)
           .success(function (response) {
-            console.log('response1! ', response);
-            authToken.setToken(response.token);
-            deferred.resolve(response);
-            $state.go('main');
+
           })
           .error(function (response) {
-            if (response.reason === 'not_attached') {
-              console.log('reason : ', response.reason);
-              deferred.reject(response);
-              $state.go('register', {
-                user: response.user
-              });
-              return;
-            }
 
-            deferred.reject(reason);
           });
       }
 
       return deferred.promise;
-    };
+    }
   });

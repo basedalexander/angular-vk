@@ -10298,8 +10298,13 @@ input:-webkit-autofill:active {
   padding: 50px;
 }
 
+.attached-accounts {
+  padding: 0;
+}
+
 .settings-attach-account-header {
   color: #7a8195;
+  font-weight: bold;
 }
 
 /*# sourceMappingURL=app.css.map */

@@ -1,6 +1,7 @@
 'use strict';
 
 var express = require('express');
+var userRoutes = require('./routes/user');
 var notesRoutes = require('./routes/notes');
 var vkRoutes = require('./routes/vk');
 var bodyParser = require('body-parser');
@@ -16,6 +17,7 @@ var app = express();
 app.use(bodyParser.json());
 app.use(headers);
 app.use(jwtauth);
+app.use('/', userRoutes );
 app.use('/', notesRoutes);
 app.use('/', vkRoutes);
 
