@@ -6,9 +6,11 @@ var mongoose = require('mongoose');
 var request = require('request');
 var jwt = require('../services/jwt');
 
+var VK_TOKEN_URL = 'https://oauth.vk.com/access_token?';
+var VK_API_URL = 'https://api.vk.com/method/';
+
 router.post('/login/vk', function (req, res) {
-  var VK_TOKEN_URL = 'https://oauth.vk.com/access_token?';
-  var VK_API_URL = 'https://api.vk.com/method/';
+
   var code = req.body.code;
   var params = {
     client_id: 5352704,
@@ -23,7 +25,6 @@ router.post('/login/vk', function (req, res) {
 
   request.post(VK_TOKEN_URL, options, function (err, response, profile) {
     if (err) { return console.log('GETTING ACCESS TOKEN ERROR: ', err);}
-    console.log('got user profile ', profile);
 
     var access_token = profile.access_token;
     var user_id = profile.user_id;
@@ -44,7 +45,6 @@ router.post('/login/vk', function (req, res) {
       if (err) { return console.log('GETTING PROFILE ERROR : ', err);}
 
       var user = users.response[0];
-      console.log('got user data: ', user);
       findMatch(user);
     });
 
@@ -59,8 +59,8 @@ router.post('/login/vk', function (req, res) {
             user: user
           });
         }
-
-        jwt.createAndSend(user, res);
+        console.log('user is found ', foundUser);
+        jwt.createAndSend(foundUser, res);
       });
     }
 
@@ -69,4 +69,31 @@ router.post('/login/vk', function (req, res) {
   });
 });
 
+
+router.get('/vk/getUser/:userID', function (req, res, next) {
+  var user = req.user;
+  if (!user) {
+    return res.send(401);
+  }
+
+  var params = {
+    user_ids: req.params.userID,
+    fields: 'photo_50, first_name, last_name'
+  };
+
+  var options = {
+    form: params,
+    json: true
+  };
+
+  request.post(VK_API_URL + 'users.get?', options, function (err, response, users) {
+    if (err) {
+      return console.log('GETTING PROFILE ERROR : ', err);
+    }
+
+    var user = users.response[0];
+
+    res.json(user);
+  });
+});
 module.exports = router;

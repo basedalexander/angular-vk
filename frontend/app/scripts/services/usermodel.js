@@ -18,6 +18,7 @@ angular.module('app')
       return deferred.promise;
     };
 
+
     this.attachVK = function () {
       var popup,
         deferred,
@@ -92,13 +93,40 @@ angular.module('app')
 
         $http.post(API_URL + 'user/attachVK', body)
           .success(function (response) {
-
+            deferred.resolve(response);
           })
-          .error(function (response) {
-
+          .error(function (reason) {
+            deferred.reject(reason);
           });
       }
 
       return deferred.promise;
     }
+
+    this.detachVK = function () {
+      var deferred = $q.defer();
+      $http.get(API_URL + 'user/detachVK')
+        .success(function (response) {
+          deferred.resolve(response);
+        })
+        .error(function (reason) {
+          deferred.reject(reason);
+        });
+
+      return deferred.promise;
+    }
+
+    this.getVkUser = function (userID) {
+      var deferred = $q.defer();
+
+      $http.get(API_URL + 'vk/getUser/' + userID)
+        .success(function (response) {
+          deferred.resolve(response);
+        })
+        .error(function (reason) {
+          deferred.reject(reason);
+        });
+
+      return deferred.promise;
+    };
   });

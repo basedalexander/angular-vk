@@ -5,9 +5,114 @@
 
 .attached-accounts {
   padding: 0;
+  overflow: hidden;
 }
 
-.settings-attach-account-header {
+
+.settings-container {
+  background: #fff;
+  padding: 50px;
+  overflow: hidden;
+}
+
+.attached-accounts {
+  padding: 0;
+}
+
+.services-title {
   color: #7a8195;
   font-weight: bold;
+  border-bottom: 1px solid gray;
+  height: 60px;
+  line-height: 60px;
+  font-size: 23px;
+}
+
+.account-title {
+  padding-left: 5px;
+  height: 70px;
+  line-height: 70px;
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid gray;
+  color: #7a8195;
+  font-weight: bold;
+}
+
+.button_connected {
+  float: right;
+  padding-top: 4px;
+  display: inline-block;
+  vertical-align: middle;
+  width: 110px;
+
+  &:hover {
+    .btn_connected {
+      display: none;
+    }
+    .btn_disconnect {
+      display: block;
+    }
+  }
+}
+
+.button_connected .button {
+  float: right;
+  font-size: 14px;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 3px;
+  color: #fff;
+  text-align: center;
+  padding: 0 15px;
+  cursor: pointer;
+}
+
+.btn_connected {
+  background: #4abfb4;
+}
+
+.btn_disconnect {
+  background: #f07b6f;
+  display: none;
+}
+
+
+.account-details {
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid gray;
+  padding: 14px 0
+}
+
+.account-avatar {
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  vertical-align: middle;
+  overflow: hidden;
+  margin-right: 10px;
+
+  img {
+    width: 40px;
+    height: 40px;
+    display: block;
+    overflow: hidden;
+  }
+}
+
+.account-name {
+  display: inline-block;
+  font-weight: bold;
+  vertical-align: middle;
+  font-size: 14px;
+}
+
+.connect-accounts-header {
+  font-size: 16px;
+  font-weight: bold;
+  color: #7a8195;
+}
+
+.connect-accounts-text {
+  font-size: 13px;
+  color: #aeb8bc;
 }

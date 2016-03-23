@@ -14,6 +14,7 @@ var userSchema = mongoose.Schema({
   name: String,
   email: String,
   password: String,
+  vk_id: String,
   notes:[notesSchema]
 });
 
@@ -28,6 +29,7 @@ userSchema.methods.toJSON = function (callback) {
   delete user.notes;
   return user;
 };
+
 
 userSchema.methods.getNotes = function () {
   var user = this.toObject();

@@ -23,9 +23,9 @@ router.post('/user/attachVK', function(req, res, next) {
     return res.status(401).send('Token not found');
   }
 
-
   var VK_TOKEN_URL = 'https://oauth.vk.com/access_token?';
   var VK_API_URL = 'https://api.vk.com/method/';
+
   var code = req.body.code;
   var params = {
     client_id: 5352704,
@@ -44,7 +44,6 @@ router.post('/user/attachVK', function(req, res, next) {
 
     var access_token = profile.access_token;
     var user_id = profile.user_id;
-    var email = profile.email;
     //
     //var params = {
     //  user_ids: user_id,
@@ -55,17 +54,22 @@ router.post('/user/attachVK', function(req, res, next) {
     //  form: params,
     //  json: true
     //};
-    console.log('req.user.id ', req.user.id);
-    var query = { email: 'jerk401@gmail.com' };
-    var update = { vk_id: 123 };
+
+    var query = user.id;
+    var update = { $set: { vk_id : user_id } };
     var options = { new: true };
 
-    console.log('userId is :', req.user._id);
+    mongoose.model('User').findByIdAndUpdate(query, update, options, function (err, user) {
+      if (err) { return console.log("can't save user", err);}
 
-    mongoose.model('User').update(query, update, options, function (err, updatedUser) {
-      if (err) { return console.log('ERROR WHILE ADDING VK_ID: ', err);}
-      console.log('got updated user: ', updatedUser);
+      res.json(user);
     });
+
+
+    //mongoose.model('User').findOneAndUpdate(query, update, options, function (err, updatedUser) {
+    //  if (err) { return console.log('ERROR WHILE ADDING VK_ID: ', err);}
+    //  console.log('got updated user: ', updatedUser);
+    //});
 
 
     //request.post(VK_API_URL + 'users.get?', options, function (err, res, users) {
@@ -79,5 +83,24 @@ router.post('/user/attachVK', function(req, res, next) {
   });
 });
 
+router.get('/user/detachVK', function (req, res, next) {
+  var user = req.user,
+    query,
+    update,
+    options;
 
+  if (!user) {
+    return res.status(401).send('Token not found');
+  }
+
+  query = user.id;
+  update = { $unset: { vk_id: ''}};
+  options = { new: true};
+  mongoose.model('User').findByIdAndUpdate(query, update, options, function (err, user) {
+    if (err) { return console.log("can't unset vk_id", err);}
+
+    res.json(user);
+  });
+
+});
 module.exports = router;

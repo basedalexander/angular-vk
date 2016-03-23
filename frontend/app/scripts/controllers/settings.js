@@ -8,7 +8,10 @@ angular.module('app')
 
     function onSuccess (response) {
       $scope.user = response;
-      console.log('settings, got user: ', response);
+
+      if (response.vk_id) {
+        $scope.getVkUser();
+      }
     }
 
     function handleError (reason) {
@@ -18,5 +21,23 @@ angular.module('app')
     $scope.attachVK = function () {
       userModel.attachVK()
         .then(onSuccess, handleError);
+    };
+
+    $scope.detachVK = function () {
+      userModel.detachVK()
+        .then(function (response) {
+          $scope.vkUser = null;
+          onSuccess(response);
+        }, handleError);
+    };
+
+
+    $scope.getVkUser = function () {
+      if ($scope.user.vk_id) {
+        userModel.getVkUser($scope.user.vk_id)
+          .then(function (response) {
+            $scope.vkUser = response;
+          }, handleError);
+      }
     }
   });

@@ -7,7 +7,6 @@ var jwtSecret = 'shhh...';
 
 module.exports = function (req, res, next) {
   var token = req.headers.authorization || (req.body && req.body.access_token) || (req.query && req.query.access_token);
-  console.log('jwtAuth invoked');
   if (token) {
     try {
       var decoded = jwt.decode(token);
