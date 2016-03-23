@@ -39,5 +39,14 @@ angular.module('app')
             $scope.vkUser = response;
           }, handleError);
       }
+    };
+
+    $scope.updateUser = function () {
+      var update = {
+        name: $scope.user.name
+      };
+
+      userModel.updateUser(update)
+        .then(onSuccess, handleError);
     }
   });

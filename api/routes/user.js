@@ -15,6 +15,29 @@ router.get('/user', function(req, res, next) {
   res.send(req.user.toJSON());
 });
 
+router.post('/user/update', function (req, res, next) {
+  var user = req.user;
+  var update,
+    query,
+    options;
+
+  if (!user) {
+    return res.status(401).send('Token not found');
+  }
+
+  console.log(req.body);
+
+  query = user.id;
+  update = { $set: req.body };
+  options = { new : true };
+
+  mongoose.model('User').findByIdAndUpdate(query, update, options, function (err, updatedUser) {
+    if (err) { throw new Error("can't update use data");}
+
+    res.json(updatedUser);
+  });
+
+});
 
 router.post('/user/attachVK', function(req, res, next) {
   var user = req.user;
@@ -44,16 +67,6 @@ router.post('/user/attachVK', function(req, res, next) {
 
     var access_token = profile.access_token;
     var user_id = profile.user_id;
-    //
-    //var params = {
-    //  user_ids: user_id,
-    //  fields: 'photo_50, first_name, last_name'
-    //};
-    //
-    //var options = {
-    //  form: params,
-    //  json: true
-    //};
 
     var query = user.id;
     var update = { $set: { vk_id : user_id } };
@@ -64,22 +77,6 @@ router.post('/user/attachVK', function(req, res, next) {
 
       res.json(user);
     });
-
-
-    //mongoose.model('User').findOneAndUpdate(query, update, options, function (err, updatedUser) {
-    //  if (err) { return console.log('ERROR WHILE ADDING VK_ID: ', err);}
-    //  console.log('got updated user: ', updatedUser);
-    //});
-
-
-    //request.post(VK_API_URL + 'users.get?', options, function (err, res, users) {
-    //  if (err) { return console.log('GETTING PROFILE ERROR : ', err);}
-    //
-    //  var user = users.response[0];
-    //  console.log('got user data: ', user);
-    //  findMatch(user);
-    //});
-
   });
 });
 
@@ -103,4 +100,5 @@ router.get('/user/detachVK', function (req, res, next) {
   });
 
 });
+
 module.exports = router;

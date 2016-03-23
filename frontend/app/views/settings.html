@@ -22,7 +22,10 @@
     <!-- BUTTON -->
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
-        <button ng-disabled='settingsForm.$pristine' type="submit" class="btn btn-primary">Update</button>
+        <button
+          ng-click="updateUser()"
+          ng-disabled='settingsForm.$pristine'
+          type="submit" class="btn btn-primary">Update</button>
       </div>
     </div>
   </form>

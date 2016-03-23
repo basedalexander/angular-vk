@@ -18,6 +18,19 @@ angular.module('app')
       return deferred.promise;
     };
 
+    this.updateUser = function (update) {
+      var deferred = $q.defer();
+
+      $http.post(API_URL + 'user/update', update)
+        .success(function (response) {
+          deferred.resolve(response);
+        })
+        .error(function (reason) {
+          deferred.reject(reason);
+        });
+
+      return deferred.promise;
+    };
 
     this.attachVK = function () {
       var popup,
@@ -101,7 +114,7 @@ angular.module('app')
       }
 
       return deferred.promise;
-    }
+    };
 
     this.detachVK = function () {
       var deferred = $q.defer();
