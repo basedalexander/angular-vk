@@ -22,8 +22,6 @@ angular.module('app')
     };
 
 
-
-
     this.login = function (email,password) {
       var user = {
         email: email,
@@ -35,6 +33,7 @@ angular.module('app')
       $http.post(API_URL + 'login', user)
         .success(function (response) {
           authToken.setToken(response.token);
+          userModel.getUser();
           deferred.resolve(response);
           $state.go('main');
         })
@@ -44,8 +43,6 @@ angular.module('app')
 
       return deferred.promise;
     };
-
-
 
 
     this.logout = function () {

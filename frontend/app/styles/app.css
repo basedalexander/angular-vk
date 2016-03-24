@@ -9932,6 +9932,22 @@ input:-webkit-autofill:active {
   margin-bottom: 5px;
 }
 
+.btn-green {
+  background: #4ABFB4;
+  color: #fff;
+}
+
+.btn-green:hover {
+  color: #fff;
+  background: #70cbc4;
+}
+
+.button-wrapper {
+  padding: 0 0 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid beige;
+}
+
 .albums-container {
   margin-top: 0;
   padding: 50px;
@@ -10050,6 +10066,19 @@ input:-webkit-autofill:active {
   background: url(../images/camera_white.png) 0 4px no-repeat;
   padding-left: 17px;
   font-weight: bold;
+}
+
+.albums-notification {
+  margin-top: 180px;
+  text-align: center;
+}
+
+.albums-notification p {
+  font-size: 1.1em;
+}
+
+.albums-notification a {
+  font-size: 1.3em;
 }
 
 .photo-header {

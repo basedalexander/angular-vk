@@ -18,13 +18,13 @@ angular.module('app')
       console.log('setting, error gettting user ', reason);
     }
 
-    $scope.attachVK = function () {
-      userModel.attachVK()
+    $scope.connectVK = function () {
+      userModel.connectVK()
         .then(onSuccess, handleError);
     };
 
-    $scope.detachVK = function () {
-      userModel.detachVK()
+    $scope.disconnectVK = function () {
+      userModel.disconnectVK()
         .then(function (response) {
           $scope.vkUser = null;
           onSuccess(response);

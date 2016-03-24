@@ -39,7 +39,7 @@ router.post('/user/update', function (req, res, next) {
 
 });
 
-router.post('/user/attachVK', function(req, res, next) {
+router.post('/user/connectVK', function(req, res, next) {
   var user = req.user;
 
   if (!user) {
@@ -68,13 +68,16 @@ router.post('/user/attachVK', function(req, res, next) {
     var access_token = profile.access_token;
     var user_id = profile.user_id;
 
+    mongoose.model('User').findOneAndUpdate({ vk_id: user_id}, { $unset: { vk_id: ''}}, {}, function (err, user) {
+      if (err) { return console.log("can't save user", err);}
+    });
+
     var query = user.id;
     var update = { $set: { vk_id : user_id } };
     var options = { new: true };
 
     mongoose.model('User').findByIdAndUpdate(query, update, options, function (err, user) {
       if (err) { return console.log("can't save user", err);}
-
       res.json(user);
     });
   });

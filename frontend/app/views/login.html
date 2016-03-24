@@ -1,4 +1,9 @@
 <div class="form-container">
+
+  <div class="button-wrapper clearfix">
+    <div ui-sref='register' class="pull-right btn btn-green">Register</div>
+  </div>
+
   <h2 class="auth-title">Log in</h2>
 
   <div class="auth-btns col-sm-offset-2 col-sm-10">
@@ -48,9 +53,7 @@
     <!-- BUTTON -->
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
-        <button ng-disabled='loginForm.$invalid' type="submit" class="btn btn-default">Sign in</button>
-        <hr class="login-hr"/>
-        <a ui-sref="register" class="pull-right">Register</a>
+        <button ng-disabled='loginForm.$invalid' type="submit" class="btn btn-default">Log in</button>
       </div>
     </div>
   </form>

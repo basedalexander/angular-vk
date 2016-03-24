@@ -93,8 +93,8 @@ angular.module('app')
     }
 
     function clearCache () {
-      var cachedAlbums = null;
-      var cachedById = {};
+      cachedAlbums = null;
+      cachedById = {};
     }
     return {
       getAll: getAll,

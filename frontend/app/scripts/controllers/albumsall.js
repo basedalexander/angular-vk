@@ -5,15 +5,23 @@ angular.module('app')
     var ctrl = this;
 
     $scope.albums = null;
+    $scope.vkConnected = true;
 
-    ctrl.getAlbums = function () {
-      albumsModel.getAll()
-        .then(function (response) {
-          $scope.albums = response;
-        });
-    };
+    function onSuccess (response) {
+      $scope.albums = response;
+    }
 
-    ctrl.getAlbums();
+    function handleError (reason) {
+      console.log('problem: ', reason);
+      if (reason === 'vk_id is not connected') {
+        $scope.vkConnected = false;
+      }
+
+    }
+
+    albumsModel.getAll()
+      .then(onSuccess, handleError);
+
 
     ctrl.showAlbum = function (albumId) {
       $scope.$parent.currentAlbum = null;

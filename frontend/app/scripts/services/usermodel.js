@@ -2,10 +2,14 @@
 
 
 angular.module('app')
-  .service('userModel', function ($http, API_URL, VK_OAUTH_URL, $q, $window) {
+  .service('userModel', function ($http, API_URL, VK_OAUTH_URL, $q, $window, albumsModel) {
     var cachedUser = null;
     var cachedVkUser = null;
 
+    function clearCache () {
+      cachedUser = null;
+      cachedVkUser = null;
+    }
 
     this.getUser = function () {
       var deferred = $q.defer();
@@ -43,7 +47,7 @@ angular.module('app')
       return deferred.promise;
     };
 
-    this.attachVK = function () {
+    this.connectVK = function () {
       var popup,
         deferred,
         intervalId;
@@ -115,7 +119,7 @@ angular.module('app')
           redirect_uri: $window.location.origin
         };
 
-        $http.post(API_URL + 'user/attachVK', body)
+        $http.post(API_URL + 'user/connectVK', body)
           .success(function (response) {
             cachedUser = response;
             deferred.resolve(response);
@@ -128,12 +132,12 @@ angular.module('app')
       return deferred.promise;
     };
 
-    this.detachVK = function () {
+    this.disconnectVK = function () {
       var deferred = $q.defer();
       $http.get(API_URL + 'user/detachVK')
         .success(function (response) {
-          delete cachedUser.vk_id;
-          cachedVkUser = null;
+          clearCache();
+          albumsModel.clearCache();
           deferred.resolve(response);
         })
         .error(function (reason) {
@@ -154,7 +158,7 @@ angular.module('app')
       }
 
 
-      $http.get(API_URL + 'vk/getUser/')
+      $http.get(API_URL + 'vk/getUser')
         .success(function (response) {
           cachedVkUser = response;
           deferred.resolve(response);
@@ -167,8 +171,5 @@ angular.module('app')
       return deferred.promise;
     };
 
-    this.clearCache = function () {
-      cachedUser = null;
-      cachedVkUser = null;
-    }
+    this.clearCache = clearCache;
   });

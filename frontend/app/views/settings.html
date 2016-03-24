@@ -19,6 +19,21 @@
       </div>
     </div>
 
+    <div class="form-group">
+      <label for="userEmail" class="col-sm-2 control-label">Email</label>
+      <div class="col-sm-4">
+        <input
+          name="user-email"
+          ng-model="user.email"
+          type="text"
+          class="form-control"
+          disabled
+          id="userEmail"
+          placeholder="email"
+          required>
+      </div>
+    </div>
+
     <!-- BUTTON -->
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
@@ -40,7 +55,7 @@
       <div class="account-details">
 
         <!-- Account disconnect button -->
-        <div ng-click='detachVK()' class="button_connected">
+        <div ng-click="disconnectVK()" class="button_connected">
           <div class="button btn_connected">Connected</div>
           <div class="button btn_disconnect">Disconnect</div>
         </div>
@@ -63,7 +78,7 @@
     <!-- VK.COM -->
     <button
       ng-show="!user.vk_id"
-      ng-click="attachVK()"
+      ng-click="connectVK()"
       type="button"
       class="auth-btn">
       <i class="fa fa-vk"></i>

@@ -108,3 +108,21 @@ input:-webkit-autofill:active {
     background-color: #f5ead9;
     margin-bottom: 5px;
 }
+
+
+.btn-green {
+  background: #4ABFB4;
+  color: #fff;
+
+
+  &:hover {
+    color: #fff;
+    background: #70cbc4;
+  }
+}
+
+.button-wrapper {
+  padding: 0 0 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid beige;
+}
