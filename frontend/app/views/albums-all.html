@@ -1,0 +1,12 @@
+<div
+  class="album col-sm-6 col-sm-offset-0 col-md-4 col-lg-3"
+  ng-repeat="album in albums"
+  ng-click='ctrl.showAlbum(album.aid)'>
+  <div class="album-wrapper">
+    <img class='album-thumb' ng-src='{{album.sizes[3].src}}' alt="album thumb">
+    <div class="album-desc">
+      <div class='album-title fl_l'>{{album.title}}</div>
+      <div class='album-size fl_r'>{{album.size}}</div>
+    </div>
+  </div>
+</div>

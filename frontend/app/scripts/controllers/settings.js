@@ -3,7 +3,7 @@
 angular.module('app')
   .controller('SettingsCtrl', function ($scope, userModel) {
 
-    userModel.getData()
+    userModel.getUser()
       .then(onSuccess, handleError);
 
     function onSuccess (response) {
@@ -34,7 +34,7 @@ angular.module('app')
 
     $scope.getVkUser = function () {
       if ($scope.user.vk_id) {
-        userModel.getVkUser($scope.user.vk_id)
+        userModel.getVkUser()
           .then(function (response) {
             $scope.vkUser = response;
           }, handleError);
@@ -48,5 +48,5 @@ angular.module('app')
 
       userModel.updateUser(update)
         .then(onSuccess, handleError);
-    }
+    };
   });

@@ -10179,6 +10179,10 @@ input:-webkit-autofill:active {
   background: none;
 }
 
+.modal-backdrop {
+  background: none;
+}
+
 .modal-body {
   padding: 0 25px;
   min-height: 400px;

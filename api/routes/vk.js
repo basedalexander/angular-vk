@@ -64,20 +64,17 @@ router.post('/login/vk', function (req, res) {
       });
     }
 
-
-
   });
 });
 
-
-router.get('/vk/getUser/:userID', function (req, res, next) {
+router.get('/vk/getUser', function (req, res, next) {
   var user = req.user;
   if (!user) {
     return res.send(401);
   }
 
   var params = {
-    user_ids: req.params.userID,
+    user_ids: user.vk_id,
     fields: 'photo_50, first_name, last_name'
   };
 
@@ -96,4 +93,55 @@ router.get('/vk/getUser/:userID', function (req, res, next) {
     res.json(user);
   });
 });
+
+router.get('/vk/getAlbums', function (req, res, next) {
+  var user = req.user;
+  if (!user) { return console.log('user is not found'); }
+
+  var params = {
+    owner_id: user.vk_id,
+    need_covers: 1,
+    photo_sizes: 1
+  };
+
+  var options = {
+    form: params,
+    json: true
+  };
+
+  request.post(VK_API_URL + 'photos.getAlbums?', options, function (err, response, albums) {
+    if (err) {
+      return console.log('GETTING PROFILE ERROR : ', err);
+    }
+
+    console.log(albums);
+
+    res.json(albums.response);
+  });
+});
+
+router.get('/vk/getAlbumPhotos/:albumID', function (req, res, next) {
+  var user = req.user;
+  if (!user) { return console.log('user is not found'); }
+
+  var params = {
+    owner_id: user.vk_id,
+    album_id: req.params.albumID
+  };
+
+  var options = {
+    form: params,
+    json: true
+  };
+
+  request.post(VK_API_URL + 'photos.get?', options, function (err, response, photos) {
+    if (err) {
+      return console.log('GETTING PHOTOS ERROR : ', err);
+    }
+
+    console.log('fetched photos');
+    res.json(photos.response);
+  });
+});
+
 module.exports = router;

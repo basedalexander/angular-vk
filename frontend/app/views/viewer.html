@@ -1,0 +1,18 @@
+<script type="text/ng-template" id="myModalContent.html">
+  <div class="modal-header">
+    <div class='modal-summary clearfix'>
+      <div class='modal-info' >Photo {{currentPhotoPos + 1}} of {{photos.length}}</div>
+      <a class="modal-close" ng-click="cancel()">Close</a>
+    </div>
+  </div>
+  <div class="modal-body modal-img-wrapper">
+    <a class='modal-img-link' ng-click='next()'>
+      <img
+        class='img-responsive modal-img'
+        ng-src='{{photos[currentPhotoPos].src_xbig || photos[currentPhotoPos].src_big}}'>
+    </a>
+  </div>
+  <div class="modal-footer">
+    <div class='modal-desc'>{{photos[currentPhotoPos].text}}</div>
+  </div>
+</script>

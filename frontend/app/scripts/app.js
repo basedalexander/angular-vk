@@ -16,17 +16,7 @@ angular
         controller: 'MainCtrl'
       })
 
-      .state('photos', {
-        url: '/photos',
-        templateUrl: 'views/photos.html',
-        controller: 'PhotosCtrl'
-      })
 
-      .state('notes', {
-        url: '/notes',
-        templateUrl: 'views/notes.html',
-        controller: 'NotesCtrl'
-      })
 
       .state('login', {
         url: '/login',
@@ -49,7 +39,44 @@ angular
         url: '/settings',
         templateUrl: 'views/settings.html',
         controller: 'SettingsCtrl'
-      });
+      })
+
+      .state('notes', {
+        url: '/notes',
+        templateUrl: 'views/notes.html',
+        controller: 'NotesCtrl'
+      })
+
+      .state('albums', {
+        url: '/albums',
+        templateUrl: 'views/albums.html',
+        controller: 'AlbumsCtrl',
+        controllerAs: 'ctrl',
+        params: {
+          autoActivateChild: 'albums.all'
+        }
+      })
+
+        .state('albums.all', {
+          url: '/all',
+          templateUrl: 'views/albums-all.html',
+          controller: 'AlbumsAllCtrl',
+          controllerAs: 'ctrl'
+        })
+
+        .state('albums.photos', {
+          url:'/:albumId/photos',
+          templateUrl: 'views/photos.html',
+          controller: 'PhotosCtrl',
+          controllerAs: 'ctrl'
+        })
+
+        .state('albums.photos.viewer', {
+          url: '/:photoID',
+          templateUrl: 'views/viewer.html',
+          controller: 'ViewerCtrl',
+          controllerAs: 'ctrl'
+        });
 
     $urlRouterProvider.otherwise('/');
     $httpProvider.interceptors.push('authInterceptor');
@@ -57,8 +84,9 @@ angular
     //$locationProvider.html5Mode(true);
   })
 
-  .run(function ($window) {
 
+  // Auth popup handling
+  .run(function ($window, $rootScope, $state) {
     var params = $window.location.search.substring(1);
 
     if (params && $window.opener && $window.opener.location.origin) {
@@ -74,6 +102,17 @@ angular
 
       $window.opener.postMessage(code, $window.location.origin);
     }
+
+
+
+    // Autoload 'all' view  when 'albums' view loaded
+    $rootScope.$on('$stateChangeSuccess', function(event, toState){
+      var aac;
+      if (aac = toState && toState.params && toState.params.autoActivateChild){
+        $state.go(aac);
+      }
+    });
+
   })
 
   .constant('API_URL', 'http://localhost:3000/')

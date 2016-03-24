@@ -3,12 +3,22 @@
 
 angular.module('app')
   .service('userModel', function ($http, API_URL, VK_OAUTH_URL, $q, $window) {
+    var cachedUser = null;
+    var cachedVkUser = null;
 
-    this.getData = function () {
+
+    this.getUser = function () {
       var deferred = $q.defer();
+
+      if (cachedUser) {
+        console.log('return cached user');
+        deferred.resolve(cachedUser);
+        return deferred.promise;
+      }
 
       $http.get(API_URL + 'user')
         .success(function (response) {
+          cachedUser = response;
           deferred.resolve(response);
         })
         .error(function (reason) {
@@ -23,6 +33,7 @@ angular.module('app')
 
       $http.post(API_URL + 'user/update', update)
         .success(function (response) {
+          cachedUser = response;
           deferred.resolve(response);
         })
         .error(function (reason) {
@@ -106,6 +117,7 @@ angular.module('app')
 
         $http.post(API_URL + 'user/attachVK', body)
           .success(function (response) {
+            cachedUser = response;
             deferred.resolve(response);
           })
           .error(function (reason) {
@@ -120,20 +132,8 @@ angular.module('app')
       var deferred = $q.defer();
       $http.get(API_URL + 'user/detachVK')
         .success(function (response) {
-          deferred.resolve(response);
-        })
-        .error(function (reason) {
-          deferred.reject(reason);
-        });
-
-      return deferred.promise;
-    }
-
-    this.getVkUser = function (userID) {
-      var deferred = $q.defer();
-
-      $http.get(API_URL + 'vk/getUser/' + userID)
-        .success(function (response) {
+          delete cachedUser.vk_id;
+          cachedVkUser = null;
           deferred.resolve(response);
         })
         .error(function (reason) {
@@ -142,4 +142,33 @@ angular.module('app')
 
       return deferred.promise;
     };
+
+    this.getVkUser = function () {
+      var VK_API_URL = 'https://api.vk.com/method/';
+      var deferred = $q.defer();
+
+      if (cachedVkUser) {
+        console.log('return cached vkuser');
+        deferred.resolve(cachedVkUser);
+        return deferred.promise;
+      }
+
+
+      $http.get(API_URL + 'vk/getUser/')
+        .success(function (response) {
+          cachedVkUser = response;
+          deferred.resolve(response);
+        })
+        .error(function (reason) {
+          deferred.reject(reason);
+        });
+
+
+      return deferred.promise;
+    };
+
+    this.clearCache = function () {
+      cachedUser = null;
+      cachedVkUser = null;
+    }
   });

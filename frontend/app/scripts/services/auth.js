@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-  .service('auth', function ($http, $window, $state, authToken, API_URL, VK_OAUTH_URL, $q) {
+  .service('auth', function ($http, $window, $state, authToken, API_URL, VK_OAUTH_URL, $q, albumsModel, userModel) {
 
 
     this.register = function (user) {
@@ -50,10 +50,15 @@ angular.module('app')
 
     this.logout = function () {
       authToken.removeToken();
+      clearCache();
       $state.go('login');
     };
 
 
+    function clearCache () {
+      albumsModel.clearCache();
+      userModel.clearCache();
+    }
 
     this.loginVK = function () {
       var popup,
@@ -144,7 +149,7 @@ angular.module('app')
               return;
             }
 
-            deferred.reject(reason);
+            deferred.reject(response.reason);
           });
       }
 
