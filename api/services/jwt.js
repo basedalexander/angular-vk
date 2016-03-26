@@ -2,8 +2,7 @@
 
 var jwt = require('jwt-simple');
 var moment = require('moment');
-
-var jwtSecret = 'shhh...';
+var config = require('../config');
 
 module.exports = {
   createAndSend: function (user, res) {
@@ -11,7 +10,7 @@ module.exports = {
     var token = jwt.encode({
       iss: user.id,
       exp: expires
-    }, jwtSecret);
+    }, config.JWT_SECRET);
 
     res.json({
       token: token,
@@ -21,10 +20,10 @@ module.exports = {
   },
 
   encode: function (thing) {
-    return jwt.encode(thing, jwtSecret);
+    return jwt.encode(thing, config.JWT_SECRET);
   },
 
   decode: function (token) {
-   return jwt.decode(token, jwtSecret);
+   return jwt.decode(token, config.JWT_SECRET);
   }
 };

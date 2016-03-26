@@ -59,7 +59,6 @@ router.post('/login/vk', function (req, res) {
             user: user
           });
         }
-        console.log('user is found ', foundUser);
         jwt.createAndSend(foundUser, res);
       });
     }
@@ -115,10 +114,8 @@ router.get('/vk/getAlbums', function (req, res, next) {
 
   request.post(VK_API_URL + 'photos.getAlbums?', options, function (err, response, albums) {
     if (err) {
-      return console.log('GETTING PROFILE ERROR : ', err);
+      return res.send(err);
     }
-
-    console.log('albums: ', albums);
 
     res.json(albums.response);
   });

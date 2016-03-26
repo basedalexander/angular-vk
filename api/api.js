@@ -1,21 +1,26 @@
 'use strict';
 
 var express = require('express');
+var config = require('./config');
 var userRoutes = require('./routes/user');
 var notesRoutes = require('./routes/notes');
 var vkRoutes = require('./routes/vk');
 var bodyParser = require('body-parser');
-var headers = require('./middlewares/res-headers');
+var cors = require('cors');
+var headers = require('./middlewares/cors');
 var mongoose = require('mongoose');
 var User = require('./models/User');
 var jwt = require('./services/jwt');
 var jwtauth = require('./middlewares/jwtauth');
 var request = require('request');
 
+console.log(cors().toString());
+
 var app = express();
 
 app.use(bodyParser.json());
-app.use(headers);
+//app.use(headers);
+app.use(cors());
 app.use(jwtauth);
 app.use('/', userRoutes );
 app.use('/', notesRoutes);
@@ -76,8 +81,10 @@ app.post('/login', function (req, res) {
   });
 });
 
-
-mongoose.connect('mongodb://localhost/appdata');
+mongoose.connect(config.MONGO_URI);
+mongoose.connection.on('error', function(err) {
+  console.log('Error: Could not connect to MongoDB. Did you forget to run `mongod`?'.red);
+});
 
 var server = app.listen(3000, function () {
   console.log('api listening on ', server.address().port);

@@ -3,8 +3,6 @@
 var User = require('../models/User.js');
 var jwt = require('../services/jwt');
 
-var jwtSecret = 'shhh...';
-
 module.exports = function (req, res, next) {
   var token = req.headers.authorization || (req.body && req.body.access_token) || (req.query && req.query.access_token);
   if (token) {
