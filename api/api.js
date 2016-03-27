@@ -4,7 +4,7 @@ var express = require('express');
 var config = require('./config');
 //var userRoutes = require('./routes/user');
 //var notesRoutes = require('./routes/notes');
-//var vkRoutes = require('./routes/vk');
+var vkApi = require('./routes/vkApi');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var headers = require('./middlewares/cors');
@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 app.use(cors());
 //app.use('/', userRoutes );
 //app.use('/', notesRoutes);
-//app.use('/', vkRoutes);
+app.use('', vkApi);
 
 app.get('/api/me', ensureAuthenticated, function (req, res) {
   res.json(req.user);

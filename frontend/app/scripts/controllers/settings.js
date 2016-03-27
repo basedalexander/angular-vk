@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-  .controller('SettingsCtrl', function ($scope, userModel) {
+  .controller('SettingsCtrl', function ($scope, userModel, auth) {
 
     userModel.getUser()
       .then(onSuccess, handleError);
@@ -9,7 +9,7 @@ angular.module('app')
     function onSuccess (response) {
       $scope.user = response;
 
-      if (response.vk_id) {
+      if (response.vkontakte) {
         $scope.getVkUser();
       }
     }
@@ -18,8 +18,8 @@ angular.module('app')
       console.log('setting, error gettting user ', reason.message);
     }
 
-    $scope.connectVK = function () {
-      userModel.connectVK()
+    $scope.vkAuth = function () {
+      auth.vkAuth()
         .then(onSuccess, handleError);
     };
 
@@ -33,7 +33,7 @@ angular.module('app')
 
 
     $scope.getVkUser = function () {
-      if ($scope.user.vk_id) {
+      if ($scope.user.vkontakte) {
         userModel.getVkUser()
           .then(function (response) {
             $scope.vkUser = response;

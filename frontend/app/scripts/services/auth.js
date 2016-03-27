@@ -57,7 +57,7 @@ angular.module('app')
       userModel.clearCache();
     }
 
-    this.loginVK = function () {
+    this.vkAuth = function () {
       var popup,
         deferred,
         intervalId;
@@ -67,7 +67,6 @@ angular.module('app')
       openPopup();
 
       function messageListener (event) {
-        console.log('got event ', event.data);
         closePopup();
 
         if (event.data === 'error') {
@@ -131,10 +130,9 @@ angular.module('app')
 
         $http.post(API_URL + 'auth/vk', body)
           .success(function (response) {
-            console.log('response1! ', response);
+            console.log('auth service: vkAuth ', response);
             authToken.setToken(response.token);
             deferred.resolve(response);
-            $state.go('main');
           })
           .error(function (response) {
             deferred.reject(response);

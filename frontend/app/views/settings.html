@@ -45,12 +45,12 @@
     </div>
   </form>
 
-  <div ng-show='user.vk_id || user.flickr_id' class="attached-accounts col-sm-10 col-sm-offset-2">
+  <div ng-show='user.vkontakte || user.flickr_id' class="attached-accounts col-sm-10 col-sm-offset-2">
     <div class="services-title">Connected accounts</div>
 
     <!-- Account title -->
     <div class="attached-account">
-      <div class="account-title">{{ user.vk_id && 'Vkontakte'}}</div>
+      <div class="account-title">{{ user.vkontakte && 'Vkontakte'}}</div>
 
       <div class="account-details">
 
@@ -72,13 +72,13 @@
 
   </div>
 
-  <div ng-hide='user.vk_id || user.flickr_id' class="auth-btns col-sm-10 col-sm-offset-2">
+  <div ng-hide='user.vkontakte || user.flickr_id' class="auth-btns col-sm-10 col-sm-offset-2">
     <h5 class="connect-accounts-header">Connect your social account</h5>
     <p class="connect-accounts-text">It will allow you to login into app in one click</p>
     <!-- VK.COM -->
     <button
-      ng-show="!user.vk_id"
-      ng-click="connectVK()"
+      ng-show="!user.vkontakte"
+      ng-click="vkAuth()"
       type="button"
       class="auth-btn">
       <i class="fa fa-vk"></i>

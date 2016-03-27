@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('app')
-  .controller('LoginCtrl', function ($scope, auth) {
+  .controller('LoginCtrl', function ($scope, $state, auth) {
 
     var onSuccess = function (message) {
-      console.log('success ', message);
+      $state.go('main');
     };
 
     var handleError = function (reason) {
@@ -17,7 +17,7 @@ angular.module('app')
         .then(onSuccess, handleError);
     };
 
-    $scope.loginVK = function () {
-      auth.loginVK().then(onSuccess, handleError);
+    $scope.vkAuth = function () {
+      auth.vkAuth().then(onSuccess, handleError);
     };
   });

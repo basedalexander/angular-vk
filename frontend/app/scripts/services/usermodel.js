@@ -6,6 +6,10 @@ angular.module('app')
     var cachedUser = null;
     var cachedVkUser = null;
 
+    this.getCachedUser = function () {
+      return cachedUser;
+    };
+
     function clearCache () {
       cachedUser = null;
       cachedVkUser = null;
@@ -157,8 +161,7 @@ angular.module('app')
         return deferred.promise;
       }
 
-
-      $http.get(API_URL + 'vk/getUser')
+      $http.get(API_URL + 'api/vk/getUser')
         .success(function (response) {
           cachedVkUser = response;
           deferred.resolve(response);

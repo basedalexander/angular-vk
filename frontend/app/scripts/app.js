@@ -116,4 +116,5 @@ angular
   })
 
   .constant('API_URL', 'http://localhost:3000/')
-  .constant('VK_OAUTH_URL', 'https://oauth.vk.com/authorize?');
+  .constant('VK_OAUTH_URL', 'https://oauth.vk.com/authorize?')
+  .constant('VK_API_URL', 'https://api.vk.com/method/');

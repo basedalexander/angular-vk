@@ -2,12 +2,12 @@
 
 
 angular.module('app')
-  .controller('RegisterCtrl', function ($scope, auth) {
+  .controller('RegisterCtrl', function ($scope, $state, auth) {
 
     $scope.user = {};
 
     var onSuccess = function (message) {
-      console.log('success ', message);
+      $state.go('main');
     };
 
     var handleError = function (reason) {

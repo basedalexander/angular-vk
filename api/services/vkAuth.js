@@ -55,19 +55,22 @@ module.exports = function (req, res) {
           var token = req.header('Authorization').split(' ')[1];
           var payload = jwt.decode(token);
 
-          var update = {
-            $set: {
-              vkontakte: user.uid,
-              picture: picture || user.photo_50,
-              displayName: displayName || user.first_name
-            }
-          };
-
-          User.findByIdAndUpdate(payload.sub, update, {new: true}, function (err, updateUser) {
-
+          // Update fields and send back updated user
+          User.findById(payload.sub, function (err, foundUser) {
+            var update = {
+              $set: {
+                vkontakte: user.uid,
+                picture: foundUser.picture || user.photo_50,
+                displayName: foundUser.displayName || user.first_name
+              }
+            };
+            User.findByIdAndUpdate(payload.sub, update, {new: true}, function (err, updatedUser) {
+              return res.json(updatedUser);
+            });
           });
         });
       } else {
+
         // Step 3b. Create a new user account or return existing one
         User.findOne({ vkontakte: user.uid}, function (err, foundUser) {
 
