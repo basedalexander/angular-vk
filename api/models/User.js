@@ -11,10 +11,11 @@ var notesSchema = mongoose.Schema({
 });
 
 var userSchema = mongoose.Schema({
-  name: String,
+  displayName: String,
+  picture: String,
   email: String,
   password: String,
-  vk_id: String,
+  vkontake: String,
   notes:[notesSchema]
 });
 
@@ -35,10 +36,6 @@ userSchema.methods.getNotes = function () {
   var user = this.toObject();
   return user.notes;
 };
-
-//userSchema.methods.saveNote = function (note, callback) {
-//  mongoose.model('User').findOneAndUpdate({_id: this.id}, { $push : {notes: note}}, callback);
-//};
 
 
 userSchema.pre('save', function (next) {

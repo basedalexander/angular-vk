@@ -7,11 +7,6 @@ var request = require('request');
 
 
 router.get('/user', function(req, res, next) {
-
-  if (!req.user) {
-    return res.status(401).send('Token not found');
-  }
-
   res.send(req.user.toJSON());
 });
 

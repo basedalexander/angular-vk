@@ -67,11 +67,6 @@ router.post('/login/vk', function (req, res) {
 });
 
 router.get('/vk/getUser', function (req, res, next) {
-  var user = req.user;
-  if (!user) {
-    return res.send(401);
-  }
-
   var params = {
     user_ids: user.vk_id,
     fields: 'photo_50, first_name, last_name'
@@ -94,9 +89,6 @@ router.get('/vk/getUser', function (req, res, next) {
 });
 
 router.get('/vk/getAlbums', function (req, res, next) {
-  var user = req.user;
-  if (!user) { return res.status(401).send("user not found"); }
-
   if (!user.vk_id) {
     return res.status(401).send("vk_id is not connected");
   }
@@ -122,9 +114,6 @@ router.get('/vk/getAlbums', function (req, res, next) {
 });
 
 router.get('/vk/getAlbumPhotos/:albumID', function (req, res, next) {
-  var user = req.user;
-  if (!user) { return console.log('user is not found'); }
-
   if (!user.vk_id) {
     return res.status(401).send("vk_id is not connected");
   }

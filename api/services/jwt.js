@@ -8,9 +8,9 @@ module.exports = {
   createAndSend: function (user, res) {
     var expires = moment().add(10, 'days').valueOf();
     var token = jwt.encode({
-      iss: user.id,
+      sub: user.id,
       exp: expires
-    }, config.JWT_SECRET);
+    }, config.TOKEN_SECRET);
 
     res.json({
       token: token,
@@ -20,10 +20,10 @@ module.exports = {
   },
 
   encode: function (thing) {
-    return jwt.encode(thing, config.JWT_SECRET);
+    return jwt.encode(thing, config.TOKEN_SECRET);
   },
 
   decode: function (token) {
-   return jwt.decode(token, config.JWT_SECRET);
+   return jwt.decode(token, config.TOKEN_SECRET);
   }
 };

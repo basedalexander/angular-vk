@@ -20,7 +20,7 @@ angular.module('app')
         return deferred.promise;
       }
 
-      $http.get(API_URL + 'user')
+      $http.get(API_URL + 'api/me')
         .success(function (response) {
           cachedUser = response;
           deferred.resolve(response);
@@ -35,7 +35,7 @@ angular.module('app')
     this.updateUser = function (update) {
       var deferred = $q.defer();
 
-      $http.post(API_URL + 'user/update', update)
+      $http.put(API_URL + 'api/me', update)
         .success(function (response) {
           cachedUser = response;
           deferred.resolve(response);

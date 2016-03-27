@@ -8,7 +8,7 @@ angular.module('app')
 
       var deferred = $q.defer();
 
-      $http.post(API_URL + 'register', user)
+      $http.post(API_URL + 'auth/register', user)
         .success(function (response) {
           authToken.setToken(response.token);
           deferred.resolve(response);
@@ -30,7 +30,7 @@ angular.module('app')
 
       var deferred = $q.defer();
 
-      $http.post(API_URL + 'login', user)
+      $http.post(API_URL + 'auth/login', user)
         .success(function (response) {
           authToken.setToken(response.token);
           userModel.getUser();
@@ -129,7 +129,7 @@ angular.module('app')
           redirect_uri: $window.location.origin
         };
 
-        $http.post(API_URL + 'login/vk', body)
+        $http.post(API_URL + 'auth/vk', body)
           .success(function (response) {
             console.log('response1! ', response);
             authToken.setToken(response.token);
@@ -137,16 +137,7 @@ angular.module('app')
             $state.go('main');
           })
           .error(function (response) {
-            if (response.reason === 'not_attached') {
-              console.log('reason : ', response.reason);
-              deferred.reject(response);
-              $state.go('register', {
-                user: response.user
-              });
-              return;
-            }
-
-            deferred.reject(response.reason);
+            deferred.reject(response);
           });
       }
 

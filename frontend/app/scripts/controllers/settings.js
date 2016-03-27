@@ -15,7 +15,7 @@ angular.module('app')
     }
 
     function handleError (reason) {
-      console.log('setting, error gettting user ', reason);
+      console.log('setting, error gettting user ', reason.message);
     }
 
     $scope.connectVK = function () {
@@ -43,7 +43,7 @@ angular.module('app')
 
     $scope.updateUser = function () {
       var update = {
-        name: $scope.user.name
+        displayName: $scope.user.displayName
       };
 
       userModel.updateUser(update)

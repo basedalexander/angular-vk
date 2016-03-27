@@ -11,7 +11,7 @@ angular.module('app')
     };
 
     var handleError = function (reason) {
-      console.log('Something is wrong ', reason);
+      console.log('Something is wrong ', reason.message);
     };
 
     $scope.submit = function () {
