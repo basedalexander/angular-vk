@@ -15,6 +15,8 @@ angular.module('app')
     };
 
     $scope.updateProfile = function () {
+      $scope.isUpdating = true;
+
       var update = {
         displayName: $scope.user.displayName,
         email: $scope.user.email
@@ -24,7 +26,10 @@ angular.module('app')
         .then(function (response) {
           toastr.success('Profile successfuly updated', '');
         })
-        .catch(handleError);
+        .catch(handleError)
+        .finally(function () {
+          $scope.isUpdating = false;
+        });
     };
 
     $scope.getVkUser = function () {

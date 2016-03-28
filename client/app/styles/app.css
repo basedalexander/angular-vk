@@ -10416,6 +10416,11 @@ input:-webkit-autofill:active {
   vertical-align: middle;
   overflow: hidden;
   margin-right: 10px;
+  visibility: hidden;
+}
+
+.account-avatar.loaded {
+  visibility: visible;
 }
 
 .account-avatar img {
@@ -10430,6 +10435,23 @@ input:-webkit-autofill:active {
   font-weight: bold;
   vertical-align: middle;
   font-size: 14px;
+  visibility: hidden;
+}
+
+.account-name.loaded {
+  visibility: visible;
+}
+
+.loading-indicator {
+  display: inline-block;
+  font-weight: bold;
+  vertical-align: middle;
+  font-size: 14px;
+  color: gray;
+}
+
+.loading-indicator.loaded {
+  display: none;
 }
 
 .connect-accounts-header {

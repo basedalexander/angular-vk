@@ -43,8 +43,9 @@
       <div class="col-sm-offset-2 col-sm-10">
         <button
           ng-click="updateProfile()"
-          ng-disabled='settingsForm.$pristine || settingsForm.$invalid'
-          type="submit" class="btn btn-primary">Update</button>
+          ng-disabled='isUpdating || (settingsForm.$pristine || settingsForm.$invalid)'
+          type="submit" class="btn btn-primary">Update <i ng-if='isUpdating' class="fa fa-refresh"></i>
+        </button>
       </div>
     </div>
   </form>
@@ -65,12 +66,17 @@
         </div>
 
         <!-- Account avatar -->
-        <a ng-href='//vk.com/id{{vkUser.uid}}' target='_blank' class="account-avatar">
+        <a ng-class="{'loaded': vkUser}" ng-href='//vk.com/id{{vkUser.uid}}' target='_blank' class="account-avatar">
           <img ng-src="{{vkUser.photo_50}}" alt="" class='img-circle'/>
         </a>
 
+        <div ng-class="{'loaded': vkUser}" class="loading-indicator">
+          <i class="fa fa-refresh"> Loading ... </i>
+        </div>
         <!-- Username -->
-        <div class="account-name">{{vkUser.first_name}} {{vkUser.last_name}}</div>
+        <div ng-class="{'loaded': vkUser}" class="account-name">
+          {{vkUser.first_name}} {{vkUser.last_name}}
+        </div>
       </div>
     </div>
 

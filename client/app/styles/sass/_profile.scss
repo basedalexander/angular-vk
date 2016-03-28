@@ -90,6 +90,11 @@
   vertical-align: middle;
   overflow: hidden;
   margin-right: 10px;
+  visibility: hidden;
+
+  &.loaded {
+    visibility: visible;
+  }
 
   img {
     width: 40px;
@@ -104,7 +109,25 @@
   font-weight: bold;
   vertical-align: middle;
   font-size: 14px;
+  visibility: hidden;
+
+  &.loaded {
+    visibility: visible;
+  }
 }
+
+.loading-indicator {
+  display: inline-block;
+  font-weight: bold;
+  vertical-align: middle;
+  font-size: 14px;
+  color: gray;
+
+  &.loaded {
+    display: none;
+  }
+}
+
 
 .connect-accounts-header {
   font-size: 16px;
