@@ -30,7 +30,6 @@ module.exports = function (req, res) {
       user_ids: profile.user_id,
       fields: 'photo_50, first_name, last_name'
     };
-
     var options = {
       form: params,
       json: true
@@ -42,7 +41,6 @@ module.exports = function (req, res) {
         console.log(err.message.red);
         return res.status(500).send({message: err.message});
       }
-
       var user = users.response[0];
 
       // Step 3a. Link user accounts
@@ -57,6 +55,11 @@ module.exports = function (req, res) {
 
           // Update fields and send back updated user
           User.findById(payload.sub, function (err, foundUser) {
+            if (err) {
+              console.log(err.message.red);
+              return res.status(500).send({message: err.message});
+            }
+
             var update = {
               $set: {
                 vkontakte: user.uid,
@@ -64,8 +67,17 @@ module.exports = function (req, res) {
                 displayName: foundUser.displayName || user.first_name
               }
             };
+
             User.findByIdAndUpdate(payload.sub, update, {new: true}, function (err, updatedUser) {
-              return res.json(updatedUser);
+              if (err) {
+                console.log(err.message.red);
+                return res.status(500).send({message: err.message});
+              }
+
+              return res.json({
+                user: updatedUser,
+                vkUser: user
+              });
             });
           });
         });

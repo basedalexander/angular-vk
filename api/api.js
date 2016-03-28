@@ -42,7 +42,7 @@ app.put('/api/me', ensureAuthenticated, function (req, res) {
   };
   options = { new : true };
 
-  mongoose.model('User').findByIdAndUpdate(query, update, options, function (err, updatedUser) {
+  User.findByIdAndUpdate(query, update, options, function (err, updatedUser) {
     if (err) { return res.status(500).send({message: err.message}); }
     res.json(updatedUser);
   });
@@ -91,6 +91,22 @@ app.post('/auth/login', function (req, res) {
 });
 
 app.post('/auth/vk', vkAuth);
+
+app.post('/auth/unlink', ensureAuthenticated, function (req, res) {
+  var provider = req.body.provider;
+
+  if (config.AUTH_PROVIDERS.indexOf(provider) === -1) {
+    return res.status(400).send({message: 'Unknown Oauth Provider'})
+  }
+
+  var update = { $unset: { vkontakte: ''}};
+  var options = { new: true };
+
+  User.findByIdAndUpdate(req.user.id, update, options, function (err, updatedUser) {
+    if (err) { res.status(500).send({message: err.message});}
+    return res.json(updatedUser);
+  });
+});
 
 mongoose.connect(config.MONGO_URI);
 mongoose.connection.on('error', function(err) {

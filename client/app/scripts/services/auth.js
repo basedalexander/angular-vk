@@ -1,8 +1,7 @@
 'use strict';
 
 angular.module('app')
-  .service('auth', function ($http, $window, $state, authToken, API_URL, VK_OAUTH_URL, $q, albumsModel, userModel) {
-
+  .service('auth', function ($http, $window, $state, authToken, API_URL, VK_OAUTH_URL, $q) {
 
     this.register = function (user) {
 
@@ -21,7 +20,6 @@ angular.module('app')
       return deferred.promise;
     };
 
-
     this.login = function (email,password) {
       var user = {
         email: email,
@@ -33,7 +31,6 @@ angular.module('app')
       $http.post(API_URL + 'auth/login', user)
         .success(function (response) {
           authToken.setToken(response.token);
-          userModel.getUser();
           deferred.resolve(response);
           $state.go('main');
         })
@@ -44,18 +41,10 @@ angular.module('app')
       return deferred.promise;
     };
 
-
     this.logout = function () {
       authToken.removeToken();
-      clearCache();
       $state.go('login');
     };
-
-
-    function clearCache () {
-      albumsModel.clearCache();
-      userModel.clearCache();
-    }
 
     this.vkAuth = function () {
       var popup,
@@ -72,7 +61,6 @@ angular.module('app')
         if (event.data === 'error') {
           return deferred.reject('User denied authentication');
         }
-
         sendCode(event.data);
       }
 
@@ -130,8 +118,9 @@ angular.module('app')
 
         $http.post(API_URL + 'auth/vk', body)
           .success(function (response) {
-            console.log('auth service: vkAuth ', response);
-            authToken.setToken(response.token);
+            if (response.token) {
+              authToken.setToken(response.token);
+            }
             deferred.resolve(response);
           })
           .error(function (response) {
@@ -140,5 +129,13 @@ angular.module('app')
       }
 
       return deferred.promise;
+    };
+
+    this.linkVk = function () {
+
+    };
+
+    this.unlink = function (provider) {
+      return $http.post(API_URL + 'auth/unlink', {provider: provider});
     };
   });

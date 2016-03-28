@@ -19,18 +19,22 @@
       </div>
     </div>
 
+    <!-- EMAIL -->
     <div class="form-group">
-      <label for="userEmail" class="col-sm-2 control-label">Email</label>
+      <label for="email" class="col-sm-2 control-label">Email</label>
       <div class="col-sm-4">
         <input
-          name="user-email"
+          name="email"
           ng-model="user.email"
-          type="text"
+          type="email"
           class="form-control"
-          disabled
-          id="userEmail"
-          placeholder="email"
+          id="email"
+          placeholder="Email"
           required>
+        <p class="help-block"
+          ng-show="settingsForm.$dirty && settingsForm.$error.email">
+          Please enter an email with proper address
+        </p>
       </div>
     </div>
 
@@ -38,8 +42,8 @@
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
         <button
-          ng-click="updateUser()"
-          ng-disabled='settingsForm.$pristine'
+          ng-click="updateProfile()"
+          ng-disabled='settingsForm.$pristine || settingsForm.$invalid'
           type="submit" class="btn btn-primary">Update</button>
       </div>
     </div>
@@ -55,7 +59,7 @@
       <div class="account-details">
 
         <!-- Account disconnect button -->
-        <div ng-click="disconnectVK()" class="button_connected">
+        <div ng-click="unlink('vkontakte')" class="button_connected">
           <div class="button btn_connected">Connected</div>
           <div class="button btn_disconnect">Disconnect</div>
         </div>
@@ -72,13 +76,14 @@
 
   </div>
 
+  <!-- LINK AUTH PROVIDER -->
   <div ng-hide='user.vkontakte || user.flickr_id' class="auth-btns col-sm-10 col-sm-offset-2">
     <h5 class="connect-accounts-header">Connect your social account</h5>
     <p class="connect-accounts-text">It will allow you to login into app in one click</p>
     <!-- VK.COM -->
     <button
       ng-show="!user.vkontakte"
-      ng-click="vkAuth()"
+      ng-click="linkVk()"
       type="button"
       class="auth-btn">
       <i class="fa fa-vk"></i>

@@ -1,6 +1,8 @@
 module.exports = {
   API_PORT: '3000',
 
+  AUTH_PROVIDERS: ['vkontakte'],
+
   VK_CLIENT_ID: 5352704,
   VK_SECRET: 'gf11EQUehgJzzXB5AvrD',
   VK_TOKEN_URL: 'https://oauth.vk.com/access_token?',

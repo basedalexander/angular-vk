@@ -3,20 +3,18 @@
 angular
   .module('app', [
     'ui.router',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'toastr'
   ])
 
-  .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $httpProvider, toastrConfig) {
 
     $stateProvider
-
       .state('main', {
         url: '/',
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-
-
 
       .state('login', {
         url: '/login',
@@ -35,10 +33,10 @@ angular
         controller: 'RegisterCtrl'
       })
 
-      .state('settings', {
-        url: '/settings',
-        templateUrl: 'views/settings.html',
-        controller: 'SettingsCtrl'
+      .state('profile', {
+        url: '/profile',
+        templateUrl: 'views/profile.html',
+        controller: 'ProfileCtrl'
       })
 
       .state('notes', {
@@ -80,6 +78,17 @@ angular
 
     $urlRouterProvider.otherwise('/');
     $httpProvider.interceptors.push('authInterceptor');
+
+    angular.extend(toastrConfig, {
+      autoDismiss: false,
+      containerId: 'toast-container',
+      maxOpened: 0,
+      newestOnTop: true,
+      positionClass: 'toast-top-center',
+      preventDuplicates: false,
+      preventOpenDuplicates: false,
+      target: 'body'
+    });
 
     //$locationProvider.html5Mode(true);
   })

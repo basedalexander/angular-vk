@@ -10443,4 +10443,8 @@ input:-webkit-autofill:active {
   color: #aeb8bc;
 }
 
+.help-block .email-invalid {
+  color: red;
+}
+
 /*# sourceMappingURL=app.css.map */

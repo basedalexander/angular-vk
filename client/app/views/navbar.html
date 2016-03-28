@@ -21,14 +21,13 @@
             <button id="single-button" type="button" class="profile-btn" uib-dropdown-toggle ng-disabled="disabled">
               <img
                 class='profile-avatar'
-                ng-src="{{getCachedUser().photo_50 || blankAvatar}}" alt="" /> <span class="caret"></span>
+                ng-src="{{cachedUser.picture || blankAvatar}}" alt="" /> <span class="caret"></span>
             </button>
 
             <!-- DROPDOWN -->
             <ul uib-dropdown-menu role="menu" aria-labelledby="single-button">
-              <li role="menuitem"><a href="#">Your profile</a></li>
-              <li class="divider"></li>
-              <li role="menuitem"><a ui-sref="settings">Settings</a></li>
+              <!--<li class="divider"></li>-->
+              <li role="menuitem"><a ui-sref="profile">Profile</a></li>
               <li role="menuitem"><a ui-sref="logout">Log out</a></li>
             </ul>
           </div>
