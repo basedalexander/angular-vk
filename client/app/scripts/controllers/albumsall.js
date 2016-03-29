@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-  .controller('AlbumsAllCtrl', function ($state, $scope, albumsModel) {
+  .controller('AlbumsAllCtrl', function ($state, $scope, albumsModel, toastr) {
     var ctrl = this;
 
     $scope.albums = null;
@@ -12,15 +12,18 @@ angular.module('app')
     }
 
     function handleError (reason) {
-      console.log('problem: ', reason);
+      toastr.error(reason, 'Error');
       if (reason === 'vk_id is not connected') {
         $scope.vkConnected = false;
       }
-
     }
 
-    albumsModel.getAll()
-      .then(onSuccess, handleError);
+
+    $scope.getAlbums = function () {
+      albumsModel.getAll()
+        .then(onSuccess)
+        .catch(handleError);
+    };
 
 
     ctrl.showAlbum = function (albumId) {
@@ -29,4 +32,7 @@ angular.module('app')
         albumId: albumId
       });
     };
+
+    $scope.getAlbums();
+
   });

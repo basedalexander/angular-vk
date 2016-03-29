@@ -15,4 +15,5 @@ angular.module('app')
     this.getVkUser = function () {
       return $http.get(API_URL + 'api/vk/getUser');
     };
+
   });
