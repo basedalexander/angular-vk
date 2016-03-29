@@ -1,4 +1,4 @@
- ## Stack
+## Stack:
 
  * Persistence store: MongoDB
  * Backend: Node.js
