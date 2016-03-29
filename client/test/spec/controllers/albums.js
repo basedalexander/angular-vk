@@ -13,11 +13,10 @@ describe('Controller: AlbumsCtrl', function () {
     scope = $rootScope.$new();
     AlbumsCtrl = $controller('AlbumsCtrl', {
       $scope: scope
-      // place here mocked dependencies
     });
   }));
 
   it('should attach a list of awesomeThings to the scope', function () {
-    expect(AlbumsCtrl).toBeDefined();
+    expect(scope.currentAlbum).toBe(null);
   });
 });

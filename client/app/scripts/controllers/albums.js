@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('app')
-  .controller('AlbumsCtrl', function ($state, $scope) {
+  .controller('AlbumsCtrl', function ($scope) {
     $scope.currentAlbum = null;
   });

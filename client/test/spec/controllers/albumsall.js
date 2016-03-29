@@ -13,7 +13,6 @@ describe('Controller: AlbumsAllCtrl', function () {
     scope = $rootScope.$new();
     AlbumsAllCtrl = $controller('AlbumsAllCtrl', {
       $scope: scope
-      // place here mocked dependencies
     });
   }));
 

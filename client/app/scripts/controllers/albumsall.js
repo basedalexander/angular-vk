@@ -11,11 +11,12 @@ angular.module('app')
       $scope.albums = response;
     }
 
-    function handleError (reason) {
-      toastr.error(reason, 'Error');
-      if (reason === 'vk_id is not connected') {
+    function handleError (response) {
+      if (response.message === 'vkontakte is not connected') {
         $scope.vkConnected = false;
+        return;
       }
+      toastr.error(response.message, 'Error');
     }
 
 

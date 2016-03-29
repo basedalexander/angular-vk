@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-  .service('auth', function ($http, $window, $state, authToken, API_URL, VK_OAUTH_URL, $q) {
+  .service('auth', function ($http, $window, $state, authToken, API_URL, VK_OAUTH_URL, $q, albumsModel) {
 
     this.register = function (user) {
 
@@ -117,6 +117,7 @@ angular.module('app')
         $http.post(API_URL + 'auth/vk', body)
           .success(function (response) {
             if (response.token) {
+              clearCache();
               authToken.setToken(response.token);
             }
             deferred.resolve(response);
@@ -131,11 +132,13 @@ angular.module('app')
       return deferred.promise;
     };
 
-    this.linkVk = function () {
-
-    };
 
     this.unlink = function (provider) {
+      clearCache();
       return $http.post(API_URL + 'auth/unlink', {provider: provider});
     };
+
+    function clearCache () {
+      albumsModel.clearCache();
+    }
   });
