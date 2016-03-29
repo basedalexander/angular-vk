@@ -111,8 +111,10 @@ angular
 
     // Autoload 'all' view  when 'albums' view loaded
     $rootScope.$on('$stateChangeSuccess', function(event, toState){
+      var aac;
       if (toState && toState.params && toState.params.autoActivateChild){
-        $state.go(toState);
+        aac = toState.params.autoActivateChild;
+        $state.go(aac);
       }
     });
 

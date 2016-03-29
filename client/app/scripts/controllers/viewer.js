@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-  .controller('ViewerCtrl', function ($scope, $stateParams, viewerService, albumsModel) {
+  .controller('ViewerCtrl', function ($scope, $stateParams, viewerService, albumsModel, toastr) {
     // In case of hard reloading on this state
     if ($scope.$parent.currentPhotoPos === null) {
       console.log('Photo viewer hard reloading, fetching album photos...');
@@ -11,14 +11,15 @@ angular.module('app')
         .then(function (photos) {
           var len = photos.length;
           for (var i = 0; i < len; i = i + 1) {
-            if (photos[i].pid === $stateParams.photoID) {
+            if (photos[i].pid === +$stateParams.photoID) {
               console.log('found position ', i);
               $scope.$parent.currentPhotoPos = i;
               break;
             }
           }
-        }, function () {
-          console.log('cannot get photos for viewer');
+        })
+        .catch(function (response) {
+          toastr.error(response.message, 'Error');
         });
     }
 
@@ -33,12 +34,11 @@ angular.module('app')
 
 angular.module('app')
   .controller('ModalInstanceCtrl', function ($scope, $state, $uibModalInstance) {
-    console.log('modal ctrl');
-
+    var photoID;
     $scope.next = function () {
 
       var curr = $scope.$parent.increaseCurrentPhotoPos();
-      var photoID = $scope.$parent.photos[curr].pid;
+      photoID = $scope.$parent.photos[curr].pid;
       $state.go('albums.photos.viewer', {
         photoID: photoID
       });

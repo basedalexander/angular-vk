@@ -6,7 +6,6 @@ angular.module('app')
     var modalInstance;
 
     function open (scope) {
-      console.log('OPEN');
       modalInstance = $uibModal.open({
         animation: false,
         templateUrl: 'myModalContent.html',
@@ -20,7 +19,6 @@ angular.module('app')
       modalInstance.result
         .then(function () {}, function () {
         isOpened = false;
-        console.log('WARHAAAAAA');
         $state.go('albums.photos', {
           albumId: scope.lastChoosenAlbumId
         });

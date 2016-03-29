@@ -87,8 +87,7 @@ angular.module('app')
 
         if (fromState.url === toState.url) {
           viewerService.close();
-
-          if ($scope.photos[$scope.currentPhotoPos].pid !== toParams.photoID) {
+          if ($scope.photos[$scope.currentPhotoPos].pid !== +toParams.photoID) {
             console.log('BACK HISTORY PRESSED');
             $scope.decreaseCurrentPhotoPos();
           }
