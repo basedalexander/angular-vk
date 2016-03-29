@@ -6,7 +6,7 @@ angular.module('app')
 
     $scope.user = {};
 
-    var onSuccess = function (message) {
+    var onSuccess = function () {
       $state.go('main');
     };
 

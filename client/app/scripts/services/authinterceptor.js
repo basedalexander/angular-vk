@@ -6,10 +6,10 @@ angular.module('app')
 
     return {
       'request' : function (config) {
-        var access_token = authToken.getToken();
+        var accessToken = authToken.getToken();
 
-        if (access_token) {
-          config.headers.Authorization = 'Bearer ' + access_token;
+        if (accessToken) {
+          config.headers.Authorization = 'Bearer ' + accessToken;
         }
 
         return config;

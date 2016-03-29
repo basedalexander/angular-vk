@@ -23,7 +23,7 @@ angular.module('app')
       };
 
       account.updateProfile(update)
-        .then(function (response) {
+        .then(function () {
           toastr.success('Profile successfuly updated', '');
         })
         .catch(handleError)

@@ -39,11 +39,6 @@ angular
         controller: 'ProfileCtrl'
       })
 
-      .state('notes', {
-        url: '/notes',
-        templateUrl: 'views/notes.html',
-        controller: 'NotesCtrl'
-      })
 
       .state('albums', {
         url: '/albums',
@@ -116,9 +111,8 @@ angular
 
     // Autoload 'all' view  when 'albums' view loaded
     $rootScope.$on('$stateChangeSuccess', function(event, toState){
-      var aac;
-      if (aac = toState && toState.params && toState.params.autoActivateChild){
-        $state.go(aac);
+      if (toState && toState.params && toState.params.autoActivateChild){
+        $state.go(toState);
       }
     });
 

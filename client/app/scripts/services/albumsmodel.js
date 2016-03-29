@@ -10,20 +10,21 @@ angular.module('app')
       albums.forEach(function (album) {
         var id = album.aid;
         if (cachedById[id] && !cachedById[id].title) {
-          cachedById[id].title = album.title
+          cachedById[id].title = album.title;
         }
 
         if (!cachedById[id]) {
-          cachedById[id] = { title: album.title}
+          cachedById[id] = { title: album.title};
         }
       });
     }
 
     function cachePhotos (albumId, photos) {
       if (!cachedById[albumId]) {
-        return cachedById[albumId] = {
+        cachedById[albumId] = {
           photos: photos
         };
+        return;
       }
       cachedById[albumId].photos = photos;
     }
@@ -101,5 +102,5 @@ angular.module('app')
       getTitleById: getTitleById,
       getPhotosById : getPhotosById,
       clearCache: clearCache
-    }
+    };
   });

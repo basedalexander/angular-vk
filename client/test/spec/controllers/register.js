@@ -18,6 +18,6 @@ describe('Controller: RegisterCtrl', function () {
   }));
 
   it('should attach a list of awesomeThings to the scope', function () {
-    expect(RegisterCtrl.awesomeThings.length).toBe(3);
+    expect(RegisterCtrl).toBeDefined();
   });
 });

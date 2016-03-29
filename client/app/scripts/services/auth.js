@@ -53,8 +53,6 @@ angular.module('app')
 
       deferred = $q.defer();
 
-      openPopup();
-
       function messageListener (event) {
         closePopup();
 
@@ -127,6 +125,8 @@ angular.module('app')
             deferred.reject(response);
           });
       }
+
+      openPopup();
 
       return deferred.promise;
     };

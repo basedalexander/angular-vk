@@ -14,7 +14,7 @@ angular.module('app')
       .then(function (title) {
         $scope.$parent.currentAlbum = title;
       }, function (reason) {
-        console.log("Can't get albums's title" , reason);
+        console.log('Can\'t get albums\'s title' , reason);
       });
 
 
@@ -22,7 +22,7 @@ angular.module('app')
       .then(function (photos) {
         $scope.photos = photos;
       }, function (reason) {
-        console.log("can't get album's photos ", reason);
+        console.log('cannot get album\'s photos ', reason);
       });
 
     ctrl.showPhoto = function (photoID, pos) {
@@ -83,18 +83,18 @@ angular.module('app')
     };
 
     $scope.$on('$stateChangeStart',
-      function(event, toState, toParams, fromState, fromParams){
+      function(event, toState, toParams, fromState){
 
         if (fromState.url === toState.url) {
           viewerService.close();
 
-          if ($scope.photos[$scope.currentPhotoPos].pid != toParams.photoID) {
+          if ($scope.photos[$scope.currentPhotoPos].pid !== toParams.photoID) {
             console.log('BACK HISTORY PRESSED');
             $scope.decreaseCurrentPhotoPos();
           }
         }
 
-        if (fromState.url === "/:photoID" && toState.url === "/:albumId/photos") {
+        if (fromState.url === '/:photoID' && toState.url === '/:albumId/photos') {
           viewerService.close();
         }
 

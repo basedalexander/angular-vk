@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('app')
   .controller('ViewerCtrl', function ($scope, $stateParams, viewerService, albumsModel) {
     // In case of hard reloading on this state
@@ -9,14 +11,14 @@ angular.module('app')
         .then(function (photos) {
           var len = photos.length;
           for (var i = 0; i < len; i = i + 1) {
-            if (photos[i].pid == $stateParams.photoID) {
+            if (photos[i].pid === $stateParams.photoID) {
               console.log('found position ', i);
               $scope.$parent.currentPhotoPos = i;
               break;
             }
           }
         }, function () {
-          console.log("can't get photos for viewer");
+          console.log('cannot get photos for viewer');
         });
     }
 
@@ -30,13 +32,13 @@ angular.module('app')
 // It is not the same as the $uibModal service used above.
 
 angular.module('app')
-  .controller('ModalInstanceCtrl', function ($scope, $state, $uibModalInstance,viewerService) {
+  .controller('ModalInstanceCtrl', function ($scope, $state, $uibModalInstance) {
     console.log('modal ctrl');
 
     $scope.next = function () {
 
       var curr = $scope.$parent.increaseCurrentPhotoPos();
-      photoID = $scope.$parent.photos[curr].pid;
+      var photoID = $scope.$parent.photos[curr].pid;
       $state.go('albums.photos.viewer', {
         photoID: photoID
       });
@@ -66,6 +68,6 @@ angular.module('app')
       $uibModalInstance.dismiss('cancel');
       $state.go('albums.photos', {
         albumId: $scope.$parent.lastChoosenAlbumId
-      })
+      });
     };
   });

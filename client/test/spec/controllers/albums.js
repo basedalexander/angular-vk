@@ -18,6 +18,6 @@ describe('Controller: AlbumsCtrl', function () {
   }));
 
   it('should attach a list of awesomeThings to the scope', function () {
-    expect(AlbumsCtrl.awesomeThings.length).toBe(3);
+    expect(AlbumsCtrl).toBeDefined();
   });
 });

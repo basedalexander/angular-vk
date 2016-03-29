@@ -3,7 +3,7 @@
 angular.module('app')
   .controller('LoginCtrl', function ($scope, $state, auth) {
 
-    var onSuccess = function (message) {
+    var onSuccess = function () {
       $state.go('main');
     };
 

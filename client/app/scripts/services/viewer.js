@@ -17,7 +17,8 @@ angular.module('app')
 
       isOpened = true;
 
-      modalInstance.result.then(function (selectedItem) {}, function () {
+      modalInstance.result
+        .then(function () {}, function () {
         isOpened = false;
         console.log('WARHAAAAAA');
         $state.go('albums.photos', {
@@ -35,5 +36,5 @@ angular.module('app')
     return {
       open: open,
       close: close
-    }
+    };
   }]);

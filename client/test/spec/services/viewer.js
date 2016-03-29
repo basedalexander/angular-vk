@@ -1,18 +1,18 @@
 'use strict';
 
-describe('Service: viewer', function () {
+describe('Service: viewerService', function () {
 
   // load the service's module
   beforeEach(module('app'));
 
   // instantiate service
-  var viewer;
-  beforeEach(inject(function (_viewer_) {
-    viewer = _viewer_;
+  var viewerService;
+  beforeEach(inject(function (_viewerService_) {
+    viewerService = _viewerService_;
   }));
 
   it('should do something', function () {
-    expect(!!viewer).toBe(true);
+    expect(!!viewerService).toBe(true);
   });
 
 });

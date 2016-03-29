@@ -2,7 +2,7 @@
 
 
 angular.module('app')
-  .service('account', function ($http, API_URL, VK_OAUTH_URL, $q, $window, albumsModel, $rootScope) {
+  .service('account', function ($http, API_URL) {
 
     this.getProfile = function () {
       return $http.get(API_URL + 'api/me');

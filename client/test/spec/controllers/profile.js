@@ -1,23 +1,23 @@
 'use strict';
 
-describe('Controller: SettingsCtrl', function () {
+describe('Controller: ProfileCtrl', function () {
 
   // load the controller's module
   beforeEach(module('app'));
 
-  var SettingsCtrl,
+  var ProfileCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    SettingsCtrl = $controller('SettingsCtrl', {
+    ProfileCtrl = $controller('ProfileCtrl', {
       $scope: scope
       // place here mocked dependencies
     });
   }));
 
   it('should attach a list of awesomeThings to the scope', function () {
-    expect(SettingsCtrl.awesomeThings.length).toBe(3);
+    expect(ProfileCtrl).toBeDefined();
   });
 });
