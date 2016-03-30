@@ -33,40 +33,39 @@ angular.module('app')
       var deferred = $q.defer();
 
         if (cachedAlbums) {
-          deferred.resolve(cachedAlbums);
+          deferred.resolve({ data: cachedAlbums });
           return deferred.promise;
         }
 
         $http.get(API_URL + 'vk/getAlbums')
-          .success(function (response) {
-            cachedAlbums = response;
-            cacheTitles(response);
+          .then(function (response) {
+            cachedAlbums = response.data;
+            cacheTitles(response.data);
             deferred.resolve(response);
           })
-          .error(function (reason) {
-            deferred.reject(reason);
+          .catch(function (response) {
+            deferred.reject(response);
           });
 
       return deferred.promise;
     }
 
-    function getTitleById (id) {
+    function getAlbumTitle (id) {
       var deferred = $q.defer();
 
       if (cachedById[id] && cachedById[id].title) {
-        console.log('return cached title');
         deferred.resolve(cachedById[id].title);
         return deferred.promise;
       }
 
       $http.get(API_URL + 'vk/getAlbums')
-        .success(function (response) {
-          cachedAlbums = response;
-          cacheTitles(response);
+        .then(function (response) {
+          cachedAlbums = response.data;
+          cacheTitles(response.data);
           deferred.resolve(cachedById[id].title);
         })
-        .error(function (reason) {
-          deferred.reject(reason);
+        .catch(function (response) {
+          deferred.reject(response);
         });
 
       return deferred.promise;
@@ -76,18 +75,17 @@ angular.module('app')
       var deferred = $q.defer();
 
       if (cachedById[id] && cachedById[id].photos) {
-        console.log('return cached photos');
-        deferred.resolve(cachedById[id].photos);
+        deferred.resolve({ data: cachedById[id].photos });
         return deferred.promise;
       }
 
       $http.get(API_URL + 'vk/getAlbumPhotos/' + id)
-        .success(function (photos) {
-          cachePhotos(id, photos);
-          deferred.resolve(photos);
+        .then(function (response) {
+          cachePhotos(id, response.data);
+          deferred.resolve(response);
         })
-        .error(function (reason) {
-          deferred.reject(reason);
+        .catch(function (response) {
+          deferred.reject(response);
         });
 
       return deferred.promise;
@@ -97,9 +95,10 @@ angular.module('app')
       cachedAlbums = null;
       cachedById = {};
     }
+
     return {
       getAll: getAll,
-      getTitleById: getTitleById,
+      getAlbumTitle: getAlbumTitle,
       getPhotosById : getPhotosById,
       clearCache: clearCache
     };

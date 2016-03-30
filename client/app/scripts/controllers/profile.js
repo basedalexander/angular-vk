@@ -48,8 +48,8 @@ angular.module('app')
 
       auth.vkAuth()
         .then(function (response) {
-          $scope.user = response.user;
-          $scope.vkUser = response.vkUser;
+          $scope.user = response.data.user;
+          $scope.vkUser = response.data.vkUser;
         })
         .catch(handleError)
         .finally(function () {
@@ -68,8 +68,8 @@ angular.module('app')
     };
 
 
-    function handleError (reason) {
-      toastr.error(reason, 'Error');
+    function handleError (response) {
+      toastr.error(response.data.message, 'Error');
     }
 
     $scope.getProfile();

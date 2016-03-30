@@ -8,15 +8,15 @@ angular.module('app')
     $scope.vkConnected = true;
 
     function onSuccess (response) {
-      $scope.albums = response;
+      $scope.albums = response.data;
     }
 
     function handleError (response) {
-      if (response.message && response.message === 'vkontakte is not connected') {
+      if (response.data.message && response.data.message === 'vkontakte is not connected') {
         $scope.vkConnected = false;
         return;
       }
-      toastr.error(response, 'Error');
+      toastr.error(response.data.message, 'Error');
     }
 
 

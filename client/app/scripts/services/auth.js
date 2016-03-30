@@ -8,13 +8,13 @@ angular.module('app')
       var deferred = $q.defer();
 
       $http.post(API_URL + 'auth/register', user)
-        .success(function (response) {
-          authToken.setToken(response.token);
+        .then(function (response) {
+          authToken.setToken(response.data.token);
           deferred.resolve(response);
           $state.go('main');
         })
-        .error(function (error) {
-          deferred.reject(error);
+        .catch(function (response) {
+          deferred.reject(response);
         });
 
       return deferred.promise;
@@ -29,13 +29,13 @@ angular.module('app')
       var deferred = $q.defer();
 
       $http.post(API_URL + 'auth/login', user)
-        .success(function (response) {
-          authToken.setToken(response.token);
+        .then(function (response) {
+          authToken.setToken(response.data.token);
           deferred.resolve(response);
           $state.go('main');
         })
-        .error(function (error) {
-          deferred.reject(error);
+        .catch(function (response) {
+          deferred.reject(response);
         });
 
       return deferred.promise;
@@ -115,14 +115,14 @@ angular.module('app')
         };
 
         $http.post(API_URL + 'auth/vk', body)
-          .success(function (response) {
-            if (response.token) {
+          .then(function (response) {
+            if (response.data && response.data.token) {
               clearCache();
-              authToken.setToken(response.token);
+              authToken.setToken(response.data.token);
             }
             deferred.resolve(response);
           })
-          .error(function (response) {
+          .catch(function (response) {
             deferred.reject(response);
           });
       }

@@ -12,12 +12,12 @@ angular.module('app')
     // Set current album's title
 
     $scope.getAlbumTitle = function (albumId) {
-      albumsModel.getTitleById(albumId)
+      albumsModel.getAlbumTitle(albumId)
         .then(function (title) {
           $scope.$parent.currentAlbum = title;
         })
         .catch(function (response) {
-          toastr.errror(response, 'Error');
+          toastr.errror(response.data.message, 'Error');
         });
     };
 
@@ -25,11 +25,11 @@ angular.module('app')
       $scope.responseReceived = false;
 
       albumsModel.getPhotosById(albumId)
-        .then(function (photos) {
-          $scope.photos = photos;
+        .then(function (response) {
+          $scope.photos = response.data;
         })
         .catch(function (response) {
-          toastr.errror(response, 'Error');
+          toastr.errror(response.data.message, 'Error');
         })
         .finally(function () {
           $scope.responseReceived = true;
@@ -41,6 +41,7 @@ angular.module('app')
 
 
     ctrl.showPhoto = function (photoID, pos) {
+
       // save position of chosen photo
       $scope.currentPhotoPos = pos;
       $state.go('albums.photos.viewer', {

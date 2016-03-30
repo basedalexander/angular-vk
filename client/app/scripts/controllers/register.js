@@ -11,7 +11,7 @@ angular.module('app')
     };
 
     var handleError = function (reason) {
-      toastr.error(reason.message , 'Error');
+      toastr.error(reason.data.message , 'Error');
     };
 
     $scope.submit = function () {
