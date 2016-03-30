@@ -1,6 +1,6 @@
 'use strict';
 
-xdescribe('Controller: ViewerCtrl', function () {
+describe('Controller: ViewerCtrl', function () {
 
   // load the controller's module
   beforeEach(module('app'));
@@ -17,7 +17,7 @@ xdescribe('Controller: ViewerCtrl', function () {
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(ViewerCtrl).not.toBeDefined();
+  it('should work', function () {
+    expect(ViewerCtrl).toBeDefined();
   });
 });

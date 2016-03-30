@@ -55,7 +55,7 @@ angular.module('app')
         .finally(function () {
           $scope.responseReceived = true;
           $scope.isLinking = false;
-        })
+        });
     };
 
     $scope.unlink = function (provider) {

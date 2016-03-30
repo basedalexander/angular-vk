@@ -12,7 +12,7 @@ angular.module('app')
     // Set current album's title
 
     $scope.getAlbumTitle = function (albumId) {
-      albumsModel.getTitleById(ctrl.albumId)
+      albumsModel.getTitleById(albumId)
         .then(function (title) {
           $scope.$parent.currentAlbum = title;
         })

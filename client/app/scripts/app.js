@@ -9,6 +9,16 @@ angular
 
   .config(function ($stateProvider, $urlRouterProvider, $httpProvider, toastrConfig) {
 
+    function loginRequired($q, $location, authToken) {
+      var deferred = $q.defer();
+      if (authToken.isAuthenticated()) {
+        deferred.resolve();
+      } else {
+        $location.path('/login');
+      }
+      return deferred.promise;
+    }
+
     $stateProvider
       .state('main', {
         url: '/',
@@ -41,7 +51,6 @@ angular
           loginRequired: loginRequired
         }
       })
-
 
       .state('albums', {
         url: '/albums',
@@ -90,15 +99,7 @@ angular
       target: 'body'
     });
 
-    function loginRequired($q, $location, authToken) {
-      var deferred = $q.defer();
-      if (authToken.isAuthenticated()) {
-        deferred.resolve();
-      } else {
-        $location.path('/login');
-      }
-      return deferred.promise;
-    }
+
 
     //$locationProvider.html5Mode(true);
   })
