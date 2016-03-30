@@ -36,7 +36,10 @@ angular
       .state('profile', {
         url: '/profile',
         templateUrl: 'views/profile.html',
-        controller: 'ProfileCtrl'
+        controller: 'ProfileCtrl',
+        resolve: {
+          loginRequired: loginRequired
+        }
       })
 
 
@@ -45,6 +48,9 @@ angular
         templateUrl: 'views/albums.html',
         controller: 'AlbumsCtrl',
         controllerAs: 'ctrl',
+        resolve: {
+          loginRequired: loginRequired
+        },
         params: {
           autoActivateChild: 'albums.all'
         }
@@ -71,7 +77,6 @@ angular
           controllerAs: 'ctrl'
         });
 
-    $urlRouterProvider.otherwise('/');
     $httpProvider.interceptors.push('authInterceptor');
 
     angular.extend(toastrConfig, {
@@ -84,6 +89,16 @@ angular
       preventOpenDuplicates: false,
       target: 'body'
     });
+
+    function loginRequired($q, $location, authToken) {
+      var deferred = $q.defer();
+      if (authToken.isAuthenticated()) {
+        deferred.resolve();
+      } else {
+        $location.path('/login');
+      }
+      return deferred.promise;
+    }
 
     //$locationProvider.html5Mode(true);
   })
