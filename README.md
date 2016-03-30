@@ -33,6 +33,7 @@ Install local dependencies (from the project root folder):
 
 ```
 cd client
+bower install
 npm install
 cd ..
 ```
