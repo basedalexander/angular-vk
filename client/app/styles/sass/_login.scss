@@ -69,9 +69,11 @@ input:-webkit-autofill:active {
 .auth-btns {
   margin-bottom: 20px;
   padding-left: 0;
+
 }
 
 .auth-btn {
+  position: relative;
   margin-right: 5px;
   background: #54769A;
   opacity: .5;
@@ -89,6 +91,15 @@ input:-webkit-autofill:active {
 
   &:focus {
     color: #fff;
+    outline: none;
+  }
+
+  .link-indicator {
+    position: absolute;
+    top: 7px;
+    right: -50px;
+    display: block;
+    border: none;
   }
 }
 

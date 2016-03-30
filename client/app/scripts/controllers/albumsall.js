@@ -12,18 +12,23 @@ angular.module('app')
     }
 
     function handleError (response) {
-      if (response.message === 'vkontakte is not connected') {
+      if (response.message && response.message === 'vkontakte is not connected') {
         $scope.vkConnected = false;
         return;
       }
-      toastr.error(response.message, 'Error');
+      toastr.error(response, 'Error');
     }
 
 
     $scope.getAlbums = function () {
+      $scope.responseReceived = false;
+
       albumsModel.getAll()
         .then(onSuccess)
-        .catch(handleError);
+        .catch(handleError)
+        .finally(function () {
+          $scope.responseReceived = true;
+        });
     };
 
 

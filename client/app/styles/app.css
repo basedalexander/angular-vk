@@ -9896,6 +9896,7 @@ input:-webkit-autofill:active {
 }
 
 .auth-btn {
+  position: relative;
   margin-right: 5px;
   background: #54769A;
   opacity: .5;
@@ -9914,6 +9915,15 @@ input:-webkit-autofill:active {
 
 .auth-btn:focus {
   color: #fff;
+  outline: none;
+}
+
+.auth-btn .link-indicator {
+  position: absolute;
+  top: 7px;
+  right: -50px;
+  display: block;
+  border: none;
 }
 
 .login-hr {
@@ -10079,6 +10089,15 @@ input:-webkit-autofill:active {
 
 .albums-notification a {
   font-size: 1.3em;
+}
+
+.albums-loading {
+  margin-top: 180px;
+  text-align: center;
+}
+
+.albums-loading img {
+  border: none;
 }
 
 .photo-header {

@@ -93,7 +93,10 @@
       type="button"
       class="auth-btn">
       <i class="fa fa-vk"></i>
+      <img ng-show='!responseReceived && isLinking' class='link-indicator' src="images/loader-small.gif" alt=""/>
     </button>
+
+    <span class="link-indicator"></span>
   </div>
 
 </div>

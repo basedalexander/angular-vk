@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-  .controller('PhotosCtrl', function ($state, $stateParams, $scope, albumsModel, viewerService) {
+  .controller('PhotosCtrl', function ($state, $stateParams, $scope, albumsModel, viewerService, toastr) {
     var ctrl = this;
 
     $scope.currentPhotoPos = null;
@@ -10,20 +10,35 @@ angular.module('app')
     $scope.lastChoosenAlbumId = $stateParams.albumId;
 
     // Set current album's title
-    albumsModel.getTitleById(ctrl.albumId)
-      .then(function (title) {
-        $scope.$parent.currentAlbum = title;
-      }, function (reason) {
-        console.log('Can\'t get albums\'s title' , reason);
-      });
 
+    $scope.getAlbumTitle = function (albumId) {
+      albumsModel.getTitleById(ctrl.albumId)
+        .then(function (title) {
+          $scope.$parent.currentAlbum = title;
+        })
+        .catch(function (response) {
+          toastr.errror(response, 'Error');
+        });
+    };
 
-    albumsModel.getPhotosById(ctrl.albumId)
-      .then(function (photos) {
-        $scope.photos = photos;
-      }, function (reason) {
-        console.log('cannot get album\'s photos ', reason);
-      });
+    $scope.getPhotosByAlbumId = function (albumId) {
+      $scope.responseReceived = false;
+
+      albumsModel.getPhotosById(albumId)
+        .then(function (photos) {
+          $scope.photos = photos;
+        })
+        .catch(function (response) {
+          toastr.errror(response, 'Error');
+        })
+        .finally(function () {
+          $scope.responseReceived = true;
+        });
+    };
+
+    $scope.getAlbumTitle(ctrl.albumId);
+    $scope.getPhotosByAlbumId(ctrl.albumId);
+
 
     ctrl.showPhoto = function (photoID, pos) {
       // save position of chosen photo
@@ -32,7 +47,6 @@ angular.module('app')
         photoID: photoID
       });
     };
-
 
     // Tooltip's settings
     $scope.placement = {
@@ -52,8 +66,6 @@ angular.module('app')
       ],
       selected: 'top'
     };
-
-
 
     $scope.increaseCurrentPhotoPos = function () {
       var curr = $scope.currentPhotoPos;
@@ -82,9 +94,7 @@ angular.module('app')
       return curr;
     };
 
-    $scope.$on('$stateChangeStart',
-      function(event, toState, toParams, fromState){
-
+    $scope.$on('$stateChangeStart', function(event, toState, toParams, fromState){
         if (fromState.url === toState.url) {
           viewerService.close();
           if ($scope.photos[$scope.currentPhotoPos].pid !== +toParams.photoID) {
@@ -98,5 +108,4 @@ angular.module('app')
         }
 
       });
-
   });

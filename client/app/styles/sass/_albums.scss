@@ -102,12 +102,21 @@
 .albums-notification {
   margin-top: 180px;
   text-align: center;
-  
+
   p {
     font-size: 1.1em;
   }
-  
+
   a {
     font-size: 1.3em;
+  }
+}
+
+.albums-loading {
+  margin-top: 180px;
+  text-align: center;
+
+  img {
+    border: none;
   }
 }

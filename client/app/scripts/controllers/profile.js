@@ -42,12 +42,20 @@ angular.module('app')
 
 
     $scope.linkVk = function () {
+
+      $scope.responseReceived = false;
+      $scope.isLinking = true;
+
       auth.vkAuth()
         .then(function (response) {
           $scope.user = response.user;
           $scope.vkUser = response.vkUser;
         })
-        .catch(handleError);
+        .catch(handleError)
+        .finally(function () {
+          $scope.responseReceived = true;
+          $scope.isLinking = false;
+        })
     };
 
     $scope.unlink = function (provider) {
