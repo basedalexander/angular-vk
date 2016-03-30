@@ -2,7 +2,7 @@
 
 
 angular.module('app')
-  .controller('RegisterCtrl', function ($scope, $state, auth) {
+  .controller('RegisterCtrl', function ($scope, $state, auth, toastr) {
 
     $scope.user = {};
 
@@ -11,7 +11,7 @@ angular.module('app')
     };
 
     var handleError = function (reason) {
-      console.log('Something is wrong ', reason.message);
+      toastr.error(reason.message , 'Error');
     };
 
     $scope.submit = function () {

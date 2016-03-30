@@ -6,7 +6,8 @@ describe('Controller: AlbumsAllCtrl', function () {
   beforeEach(module('app'));
 
   var AlbumsAllCtrl,
-    scope;
+    scope,
+    albumsModel =
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {

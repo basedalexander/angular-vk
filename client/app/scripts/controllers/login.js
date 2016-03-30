@@ -1,14 +1,14 @@
 'use strict';
 
 angular.module('app')
-  .controller('LoginCtrl', function ($scope, $state, auth) {
+  .controller('LoginCtrl', function ($scope, $state, auth, toastr) {
 
     var onSuccess = function () {
       $state.go('main');
     };
 
     var handleError = function (reason) {
-      console.log('Something is wrong ', reason.message);
+      toastr.error(reason.message , 'Error');
     };
 
 
